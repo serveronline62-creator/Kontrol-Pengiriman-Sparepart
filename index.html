@@ -1923,12 +1923,17 @@
     });
 
     /* ============================================================
-       GRAFIK — CoinGecko (LIVE + HISTORI)
+       GRAFIK — CoinGecko (LIVE + HISTORI) dengan RETRY
        ============================================================ */
+    // >>> ISI DENGAN DEMO API KEY ANDA DARI https://www.coingecko.com/en/developers/dashboard <<<
+    const DEMO_API_KEY = ''; // contoh: 'CG-xxxxxxxxxxxxxxxxxxxxxxxx'
+
     const COINGECKO_URL      = 'https://api.coingecko.com/api/v3/simple/price?ids=dogecoin&vs_currencies=idr&include_24hr_change=true';
     const COINGECKO_HIST_URL = 'https://api.coingecko.com/api/v3/coins/dogecoin/market_chart?vs_currency=idr&days=';
     const MAX_DATA_POINTS    = 60;
-    const REFRESH_INTERVAL   = 30000;
+
+    // Jika tidak punya API key, naikkan interval supaya tidak kena rate limit
+    const REFRESH_INTERVAL   = DEMO_API_KEY ? 30000 : 120000;
 
     let priceChart      = null;
     let chartLabels     = [];
@@ -1936,9 +1941,53 @@
     let lastPrice       = null;
     let chartFetchTimer = null;
 
-    let currentRange   = 'live';   // 'live' | '1' | '7' | '30' | '90'
-    let rangeRequestId = 0;        // untuk membatalkan fetch lama saat user cepat berpindah range
+    let currentRange   = 'live';
+    let rangeRequestId = 0;
 
+    /* -------------------- FETCH WITH RETRY -------------------- */
+    async function fetchWithRetry(url, options = {}, maxRetries = 4) {
+      const headers = Object.assign({}, options.headers);
+      if (DEMO_API_KEY) {
+        headers['x-cg-demo-api-key'] = DEMO_API_KEY;
+      }
+
+      let lastErr = null;
+      for (let attempt = 0; attempt <= maxRetries; attempt++) {
+        try {
+          const res = await fetch(url, Object.assign({}, options, { headers: headers }));
+
+          if (res.status === 429) {
+            const retryAfter = parseInt(res.headers.get('Retry-After') || '0', 10);
+            const waitSec = retryAfter > 0 ? retryAfter : Math.pow(2, attempt) * 3; // 3s, 6s, 12s, 24s
+            console.warn('[CoinGecko] Rate limit 429. Retry dalam ' + waitSec + 's (attempt ' + (attempt + 1) + '/' + (maxRetries + 1) + ')');
+            if (attempt < maxRetries) {
+              await new Promise(r => setTimeout(r, waitSec * 1000));
+              continue;
+            }
+            throw new Error('Rate limit — tunggu beberapa saat lagi');
+          }
+
+          if (!res.ok) throw new Error('HTTP ' + res.status);
+          return await res.json();
+
+        } catch (err) {
+          lastErr = err;
+          // Jangan retry untuk rate limit terakhir atau error data
+          if (err.message === 'Rate limit — tunggu beberapa saat lagi') throw err;
+
+          if (attempt < maxRetries) {
+            const waitSec = Math.pow(2, attempt) * 2;
+            console.warn('[CoinGecko] Fetch gagal (' + err.message + '). Retry dalam ' + waitSec + 's');
+            await new Promise(r => setTimeout(r, waitSec * 1000));
+          } else {
+            throw lastErr;
+          }
+        }
+      }
+      throw lastErr || new Error('Gagal fetch');
+    }
+
+    /* -------------------- INIT CHART -------------------- */
     function initChart() {
       const ctx = $('priceChart').getContext('2d');
       const isLight = document.documentElement.getAttribute('data-theme') === 'light';
@@ -2008,16 +2057,14 @@
       });
     }
 
-    /* -------- LIVE: ambil harga saat ini -------- */
+    /* -------------------- LIVE -------------------- */
     async function fetchDogecoinPrice() {
       if (currentRange !== 'live') return;
 
       const statusEl = $('chartStatusText');
       const dotEl    = $('chartStatus').querySelector('.dot');
       try {
-        const res = await fetch(COINGECKO_URL, { cache: 'no-store' });
-        if (!res.ok) throw new Error('HTTP ' + res.status);
-        const json = await res.json();
+        const json = await fetchWithRetry(COINGECKO_URL, { cache: 'no-store' });
         const doge = json.dogecoin;
         if (!doge || typeof doge.idr !== 'number') throw new Error('Data tidak valid');
 
@@ -2061,13 +2108,13 @@
         return price;
       } catch (err) {
         console.warn('Gagal ambil harga DOGE:', err);
-        statusEl.textContent = 'Gagal memperbarui — coba lagi';
+        statusEl.textContent = 'Gagal — ' + (err.message || 'coba lagi');
         dotEl.classList.add('off');
         return null;
       }
     }
 
-    /* -------- HISTORI: ambil data masa lalu -------- */
+    /* -------------------- HISTORI -------------------- */
     async function fetchHistoricalPrice(days) {
       const reqId = ++rangeRequestId;
       const statusEl = $('chartStatusText');
@@ -2077,9 +2124,7 @@
       dotEl.classList.add('off');
 
       try {
-        const res = await fetch(COINGECKO_HIST_URL + days, { cache: 'no-store' });
-        if (!res.ok) throw new Error('HTTP ' + res.status);
-        const json = await res.json();
+        const json = await fetchWithRetry(COINGECKO_HIST_URL + days, { cache: 'no-store' });
 
         if (reqId !== rangeRequestId) return;
         if (!json.prices || !Array.isArray(json.prices) || !json.prices.length) {
@@ -2126,13 +2171,13 @@
       } catch (err) {
         if (reqId !== rangeRequestId) return;
         console.warn('Gagal ambil data historis:', err);
-        statusEl.textContent = 'Gagal memuat data historis';
+        statusEl.textContent = 'Gagal — ' + (err.message || 'coba lagi');
         dotEl.classList.add('off');
-        toast('Gagal memuat data historis', 'error');
+        toast('Gagal memuat data historis: ' + (err.message || ''), 'error');
       }
     }
 
-    /* -------- Ganti range -------- */
+    /* -------------------- GANTI RANGE -------------------- */
     function setChartRange(range) {
       currentRange = range;
 
@@ -2166,7 +2211,6 @@
       rangeRequestId++;
     }
 
-    /* Event klik tombol range */
     document.querySelectorAll('.range-btn').forEach(btn => {
       btn.addEventListener('click', () => setChartRange(btn.dataset.range));
     });
