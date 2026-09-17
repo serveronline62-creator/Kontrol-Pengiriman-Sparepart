@@ -84,7 +84,7 @@
   .modal{background:#fff;border-radius:16px;width:min(1080px,100%);max-height:92vh;
     display:flex;flex-direction:column;box-shadow:0 24px 60px rgba(0,0,0,.35);animation:pop .18s ease}
   .modal.small{width:min(680px,100%)}
-  .modal.wide{width:min(1500px,100%)}
+  .modal.wide{width:min(1600px,100%)}
   @keyframes pop{from{transform:scale(.96);opacity:0}to{transform:scale(1);opacity:1}}
   .modal-head{padding:16px 22px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:12px}
   .modal-head h2{font-size:16px;font-weight:700}
@@ -105,48 +105,93 @@
   .field input:focus,.field select:focus,.field textarea:focus{
     border-color:var(--brand);background:#fff;box-shadow:0 0 0 3px rgba(37,99,235,.12)}
   .field textarea{resize:vertical;min-height:64px}
-  /* DETAIL MODAL */
+  /* DETAIL MODAL — SPREADSHEET */
   .detail-title-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
   .detail-title-row .key{font-size:16px;font-weight:700;color:#1e293b;letter-spacing:.2px}
   .detail-title-row .count-pill{font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px;
     background:#dbeafe;color:#1e40af}
   .detail-hint{font-size:11px;color:var(--muted);margin-top:4px}
-  .detail-cards{display:flex;gap:16px;overflow-x:auto;overflow-y:hidden;padding:20px 22px;
-    background:#f8fafc;min-height:340px;scroll-snap-type:x proximity}
-  .detail-cards::-webkit-scrollbar{height:12px}
-  .detail-cards::-webkit-scrollbar-track{background:#e2e8f0;border-radius:6px}
-  .detail-cards::-webkit-scrollbar-thumb{background:#94a3b8;border-radius:6px}
-  .detail-cards::-webkit-scrollbar-thumb:hover{background:#64748b}
-  .detail-card{flex:0 0 320px;scroll-snap-align:start;background:#fff;border:1px solid var(--line);
-    border-radius:12px;overflow:hidden;box-shadow:0 2px 10px rgba(15,23,42,.06);
-    display:flex;flex-direction:column;max-height:calc(92vh - 220px);transition:.15s}
-  .detail-card:hover{box-shadow:0 6px 20px rgba(15,23,42,.12);border-color:#bfdbfe}
-  .dc-head{padding:12px 14px;background:linear-gradient(120deg,#1e293b,#334155);color:#fff;
-    display:flex;align-items:center;gap:10px;flex:none}
-  .dc-nomor{font-weight:700;font-size:14px;letter-spacing:.3px}
-  .dc-head .pill{margin-left:auto}
-  .dc-body{padding:12px 14px;overflow-y:auto;flex:1;display:flex;flex-direction:column;gap:10px}
-  .dc-body::-webkit-scrollbar{width:6px}
-  .dc-body::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:3px}
-  .dc-field{display:flex;flex-direction:column;gap:3px;padding-bottom:8px;border-bottom:1px dashed #f1f5f9}
-  .dc-field:last-child{border-bottom:none;padding-bottom:0}
-  .dc-label{font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.4px}
-  .dc-value{font-size:12.5px;color:var(--ink);word-break:break-word;line-height:1.4}
-  .dc-value.hi{font-weight:700;color:#1e293b}
-  .dc-actions{padding:10px 14px;border-top:1px solid var(--line);display:flex;gap:8px;background:#f8fafc;flex:none}
-  .btn-icon{padding:6px 12px;border-radius:7px;border:1px solid var(--line);background:#fff;
-    cursor:pointer;font-size:12px;font-weight:600;color:#334155;transition:.12s}
-  .btn-icon:hover{background:#eff6ff;border-color:var(--brand);color:var(--brand)}
-  .btn-icon.danger{color:var(--red)}
-  .btn-icon.danger:hover{background:#fee2e2;border-color:var(--red)}
+  .detail-sheet-wrap{
+    flex:1; overflow:auto; background:#f8fafc;
+    min-height:340px; max-height:calc(92vh - 200px);
+  }
+  .detail-sheet-wrap::-webkit-scrollbar{width:12px;height:12px}
+  .detail-sheet-wrap::-webkit-scrollbar-track{background:#e2e8f0}
+  .detail-sheet-wrap::-webkit-scrollbar-thumb{background:#94a3b8;border-radius:6px}
+  .detail-sheet-wrap::-webkit-scrollbar-thumb:hover{background:#64748b}
+  .detail-sheet{
+    border-collapse:separate; border-spacing:0;
+    min-width:max-content; width:100%;
+    font-size:12.5px;
+  }
+  .detail-sheet thead th{
+    position:sticky; top:0; z-index:2;
+    background:#1e293b; color:#e2e8f0;
+    font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:.5px;
+    padding:11px 14px; text-align:left; white-space:nowrap;
+    border-right:1px solid #334155;
+    border-bottom:2px solid #0f172a;
+  }
+  .detail-sheet thead th:last-child{border-right:none}
+  .detail-sheet thead th:first-child{
+    left:0; z-index:4;
+    background:#0f172a;
+    border-right:1px solid #334155;
+  }
+  .detail-sheet tbody td{
+    padding:11px 14px;
+    border-bottom:1px solid var(--line);
+    border-right:1px solid #f1f5f9;
+    background:#fff; white-space:nowrap;
+    vertical-align:middle;
+  }
+  .detail-sheet tbody td:last-child{border-right:none}
+  .detail-sheet tbody tr:nth-child(even) td{background:#f8fafc}
+  .detail-sheet tbody tr:hover td{background:#eff6ff}
+  .detail-sheet tbody td:first-child{
+    position:sticky; left:0; z-index:1;
+    background:#fff;
+    font-weight:700; color:var(--brand);
+    border-right:1px solid var(--line);
+  }
+  .detail-sheet tbody tr:nth-child(even) td:first-child{background:#f8fafc}
+  .detail-sheet tbody tr:hover td:first-child{background:#eff6ff}
+  .detail-sheet .col-aksi{
+    text-align:center; white-space:nowrap;
+    background:#f1f5f9 !important;
+    position:sticky; right:0; z-index:2;
+    border-left:1px solid var(--line);
+    border-right:none;
+  }
+  .detail-sheet thead th.col-aksi{
+    background:#0f172a !important; color:#fff;
+    border-left:1px solid #334155;
+  }
+  .detail-sheet tbody tr:hover td.col-aksi{background:#dbeafe !important}
+  .detail-sheet .qty-cell{text-align:center;font-weight:700}
+  .detail-sheet .pn-cell,.detail-sheet .po-cell{font-weight:600;color:#1e293b}
+  .detail-sheet .desc-cell,.detail-sheet .ana-cell{
+    max-width:260px; overflow:hidden; text-overflow:ellipsis;
+  }
+  .detail-sheet .desc-cell{color:#334155}
+  .detail-sheet .ana-cell{color:#475569;max-width:240px}
   .detail-summary{font-size:12px;color:#475569;font-weight:600}
   .detail-summary b{color:#1e293b}
+  .btn-icon{padding:5px 11px;border-radius:7px;border:1px solid var(--line);background:#fff;
+    cursor:pointer;font-size:11.5px;font-weight:600;color:#334155;transition:.12s;
+    display:inline-flex;align-items:center;gap:4px;margin:0 2px}
+  .btn-icon:hover{background:#eff6ff;border-color:var(--brand);color:var(--brand)}
+  .btn-icon.danger{color:var(--red)}
+  .btn-icon.danger:hover{background:#fee2e2;border-color:var(--red);color:var(--red)}
   /* PILL */
   .pill{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700}
   .pill.open{background:#fef3c7;color:#92400e}
   .pill.proses{background:#dbeafe;color:#1e40af}
   .pill.selesai{background:#dcfce7;color:#166534}
   .pill.batal{background:#fee2e2;color:#991b1b}
+  .yn{font-weight:700}
+  .yn.ya{color:var(--green)}
+  .yn.tidak{color:#94a3b8}
   /* IMPORT MODAL */
   .drop-zone{border:2px dashed #cbd5e1;border-radius:14px;padding:34px 20px;text-align:center;
     background:#f8fafc;cursor:pointer;transition:.15s}
@@ -191,7 +236,7 @@
     .page-head{padding:16px}
     .page-head h1{font-size:16px}
     .head-badge{display:none}
-    .detail-card{flex:0 0 260px}
+    .detail-sheet{font-size:11.5px}
   }
 </style>
 </head>
@@ -239,7 +284,7 @@
   </div>
 </div>
 
-<!-- DETAIL MODAL -->
+<!-- ================= MODAL DETAIL — TAMPILAN SPREADSHEET ================= -->
 <div class="overlay" id="detailOverlay">
   <div class="modal wide">
     <div class="modal-head">
@@ -248,11 +293,16 @@
           <span class="key" id="detailKey">-</span>
           <span class="count-pill" id="detailCount">0 item</span>
         </div>
-        <div class="detail-hint">Semua data dengan Bukti Transaksi Kirim yang sama, ditampilkan berjajar ke samping →</div>
+        <div class="detail-hint">Tampilan spreadsheet — sama seperti file Excel. Geser ke kanan untuk melihat semua kolom →</div>
       </div>
       <button class="close-x" id="detailCloseX">✕</button>
     </div>
-    <div class="detail-cards" id="detailCards"></div>
+    <div class="detail-sheet-wrap" id="detailSheetWrap">
+      <table class="detail-sheet">
+        <thead id="detailThead"></thead>
+        <tbody id="detailTbody"></tbody>
+      </table>
+    </div>
     <div class="modal-foot">
       <div class="detail-summary" id="detailSummary">-</div>
       <div class="spacer"></div>
@@ -540,17 +590,21 @@ function refreshSiteFilter(){
 }
 
 /* =========================================================
-   DETAIL MODAL
+   DETAIL MODAL — TAMPILAN SPREADSHEET (SEPERTI EXCEL)
    ========================================================= */
 function openDetail(key){
   currentDetailKey = key;
   renderDetail();
   $('#detailOverlay').classList.add('show');
+  // reset scroll ke kiri
+  const wrap = $('#detailSheetWrap');
+  if(wrap) wrap.scrollLeft = 0;
 }
 function closeDetail(){
   $('#detailOverlay').classList.remove('show');
   currentDetailKey = null;
 }
+
 function renderDetail(){
   if(!currentDetailKey) return;
   const items = data.filter(d => groupKey(d) === currentDetailKey);
@@ -558,17 +612,63 @@ function renderDetail(){
   $('#detailKey').textContent = currentDetailKey;
   $('#detailCount').textContent = items.length + ' item';
 
+  // Header tabel — 21 kolom + 1 kolom Aksi
+  $('#detailThead').innerHTML =
+    '<tr>' +
+    FIELDS.map(f=>`<th>${esc(f.label)}</th>`).join('') +
+    '<th class="col-aksi">Aksi</th>' +
+    '</tr>';
+
   if(items.length === 0){
-    $('#detailCards').innerHTML = `<div style="padding:40px;color:#64748b;text-align:center;width:100%">
-      Tidak ada item pada bukti transaksi ini.</div>`;
+    $('#detailTbody').innerHTML =
+      `<tr><td colspan="${FIELDS.length + 1}"
+        style="padding:40px;text-align:center;color:#64748b">
+        Tidak ada item pada bukti transaksi ini.</td></tr>`;
     $('#detailSummary').innerHTML = '-';
     return;
   }
 
-  const totalQty = items.reduce((a,d)=> a + (parseInt(d.qty)||0), 0);
-  $('#detailCards').innerHTML = items.map(d => renderDetailCard(d)).join('');
+  // Isi baris — tiap record = 1 baris spreadsheet
+  $('#detailTbody').innerHTML = items.map(d=>{
+    const tds = FIELDS.map(f=>{
+      const v = d[f.key] ?? '';
+      if(f.key === 'statusServiceCall'){
+        const cls = String(v).toLowerCase();
+        return `<td><span class="pill ${cls}">${esc(v || '-')}</span></td>`;
+      }
+      if(f.key === 'kembaliKePabrik' || f.key === 'klaimKeHIT'){
+        const cls = String(v).toLowerCase() === 'ya' ? 'ya' : 'tidak';
+        return `<td><span class="yn ${cls}">${esc(v || '-')}</span></td>`;
+      }
+      if(f.key === 'qty'){
+        return `<td class="qty-cell">${esc(v || '0')}</td>`;
+      }
+      if(f.key === 'partNumber'){
+        return `<td class="pn-cell">${esc(v || '-')}</td>`;
+      }
+      if(f.key === 'nomorPO'){
+        return `<td class="po-cell">${esc(v || '-')}</td>`;
+      }
+      if(f.key === 'deskripsiPartNumber'){
+        return `<td class="desc-cell" title="${esc(v)}">${esc(v || '-')}</td>`;
+      }
+      if(f.key === 'analisisSA'){
+        return `<td class="ana-cell" title="${esc(v)}">${esc(v || '-')}</td>`;
+      }
+      return `<td>${esc(v === '' ? '-' : v)}</td>`;
+    }).join('');
 
-  $('#detailCards').querySelectorAll('.edit-btn').forEach(b=>{
+    return `<tr data-id="${d.id}">
+      ${tds}
+      <td class="col-aksi">
+        <button class="btn-icon edit-btn" data-id="${d.id}">✏ Edit</button>
+        <button class="btn-icon danger del-btn" data-id="${d.id}">🗑 Hapus</button>
+      </td>
+    </tr>`;
+  }).join('');
+
+  // Bind events tombol
+  $('#detailTbody').querySelectorAll('.edit-btn').forEach(b=>{
     b.addEventListener('click', e=>{
       e.stopPropagation();
       const id = Number(b.dataset.id);
@@ -576,7 +676,7 @@ function renderDetail(){
       openModal(id);
     });
   });
-  $('#detailCards').querySelectorAll('.del-btn').forEach(b=>{
+  $('#detailTbody').querySelectorAll('.del-btn').forEach(b=>{
     b.addEventListener('click', e=>{
       e.stopPropagation();
       const id = Number(b.dataset.id);
@@ -596,34 +696,8 @@ function renderDetail(){
     });
   });
 
+  const totalQty = items.reduce((a,d)=> a + (parseInt(d.qty)||0), 0);
   $('#detailSummary').innerHTML = `Total <b>${items.length}</b> item · <b>${totalQty}</b> qty`;
-}
-
-function renderDetailCard(d){
-  const status = String(d.statusServiceCall || '').toLowerCase();
-  const fieldsHtml = FIELDS
-    .filter(f => f.key !== 'nomor' && f.key !== 'statusServiceCall' && f.key !== 'buktiTransaksiKirim')
-    .map(f=>{
-      let v = d[f.key] ?? '';
-      if(v === '') v = '-';
-      const hi = (f.key === 'partNumber') ? ' hi' : '';
-      return `<div class="dc-field">
-        <div class="dc-label">${esc(f.label)}</div>
-        <div class="dc-value${hi}">${esc(v)}</div>
-      </div>`;
-    }).join('');
-
-  return `<div class="detail-card" data-id="${d.id}">
-    <div class="dc-head">
-      <span class="dc-nomor">#${esc(d.nomor || '-')}</span>
-      <span class="pill ${status}">${esc(d.statusServiceCall || '-')}</span>
-    </div>
-    <div class="dc-body">${fieldsHtml}</div>
-    <div class="dc-actions">
-      <button class="btn-icon edit-btn" data-id="${d.id}">✏ Edit</button>
-      <button class="btn-icon danger del-btn" data-id="${d.id}">🗑 Hapus</button>
-    </div>
-  </div>`;
 }
 
 /* =========================================================
@@ -718,7 +792,7 @@ function deleteRecord(){
 }
 
 /* =========================================================
-   EXCEL EXPORT UTILITIES
+   EXCEL EXPORT
    ========================================================= */
 function autoWidths(rows, headers){
   return headers.map(h=>{
@@ -730,14 +804,11 @@ function autoWidths(rows, headers){
   });
 }
 
-/* Convert internal record → object dengan label Indonesia sebagai header */
 function recordToLabeled(d){
   const o = {};
   FIELDS.forEach(f=>{
     let v = d[f.key] ?? '';
-    // Format tanggal agar rapi
     if(f.key === 'tanggalReservasi' && v){
-      // pastikan format YYYY-MM-DD
       const dt = new Date(v);
       if(!isNaN(dt)) v = dt.toISOString().slice(0,10);
     }
@@ -746,9 +817,6 @@ function recordToLabeled(d){
   return o;
 }
 
-/* =========================================================
-   EXPORT EXCEL — SELURUH HASIL FILTER
-   ========================================================= */
 function exportExcel(){
   const filtered = getFilteredData();
   if(!filtered.length){ toast('⚠️ Tidak ada data untuk di-export'); return; }
@@ -765,7 +833,6 @@ function exportExcel(){
   const wb = XLSX.utils.book_new();
   XLSX.utils.book_append_sheet(wb, ws, 'Data Sparepart');
 
-  // Info sheet
   const info = [
     ['Laporan', 'Kontrol Pengiriman Sparepart'],
     ['Tanggal Export', new Date().toLocaleString('id-ID')],
@@ -785,9 +852,6 @@ function exportExcel(){
   toast('⬇ File Excel berhasil diunduh');
 }
 
-/* =========================================================
-   EXPORT EXCEL — KHUSUS 1 GRUP (dari detail)
-   ========================================================= */
 function exportGroupExcel(){
   if(!currentDetailKey) return;
   const items = data.filter(d => groupKey(d) === currentDetailKey);
@@ -802,7 +866,6 @@ function exportGroupExcel(){
   })};
 
   const wb = XLSX.utils.book_new();
-  // Sheet name max 31 char, tidak boleh ada /\?*[]
   let sheetName = String(currentDetailKey).replace(/[\\\/\?\*\[\]:]/g,'-').slice(0,31);
   if(!sheetName) sheetName = 'Detail';
   XLSX.utils.book_append_sheet(wb, ws, sheetName);
@@ -812,9 +875,6 @@ function exportGroupExcel(){
   toast('⬇ File Excel grup berhasil diunduh');
 }
 
-/* =========================================================
-   TEMPLATE EXCEL
-   ========================================================= */
 function downloadTemplateExcel(){
   const headers = FIELDS.map(f=>f.label);
   const example = {};
@@ -832,7 +892,6 @@ function downloadTemplateExcel(){
   const ws = XLSX.utils.json_to_sheet([example], { header: headers });
   ws['!cols'] = autoWidths([example], headers);
 
-  // Tambahkan sheet petunjuk
   const guide = [
     ['PETUNJUK PENGGUNAAN TEMPLATE'],
     [''],
