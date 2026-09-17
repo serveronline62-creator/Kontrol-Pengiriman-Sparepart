@@ -12,9 +12,10 @@
     --line:#e2e8f0; --brand:#2563eb; --brand-dark:#1d4ed8;
     --green:#16a34a; --amber:#d97706; --red:#dc2626;
   }
-  body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;
-    background:var(--bg); color:var(--ink); font-size:13px; padding:18px;}
-
+  body{
+    font-family:'Segoe UI',system-ui,-apple-system,sans-serif;
+    background:var(--bg); color:var(--ink); font-size:13px; padding:18px;
+  }
   /* ---------- HEADER ---------- */
   .page-head{
     background:linear-gradient(120deg,#0f172a,#1e3a8a);
@@ -23,12 +24,11 @@
     box-shadow:0 8px 24px rgba(15,23,42,.18);
   }
   .logo{width:46px;height:46px;border-radius:12px;background:rgba(255,255,255,.14);
-    display:grid;place-items:center;font-size:22px;flex:none;}
+    display:grid;place-items:center;font-size:22px;flex:none}
   .page-head h1{font-size:19px;font-weight:700;letter-spacing:.2px}
   .page-head p{font-size:12px;color:#c7d2fe;margin-top:3px}
   .head-badge{margin-left:auto;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);
-    padding:8px 14px;border-radius:10px;font-size:12px;font-weight:600;}
-
+    padding:8px 14px;border-radius:10px;font-size:12px;font-weight:600}
   /* ---------- STATS ---------- */
   .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin:16px 0}
   .stat{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
@@ -36,20 +36,18 @@
   .stat .val{font-size:22px;font-weight:700;margin-top:5px}
   .stat.b .val{color:var(--brand)} .stat.g .val{color:var(--green)}
   .stat.a .val{color:var(--amber)} .stat.r .val{color:var(--red)}
-
   /* ---------- TOOLBAR ---------- */
   .toolbar{background:var(--panel);border:1px solid var(--line);border-radius:12px;
-    padding:12px;display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:14px;}
+    padding:12px;display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
   .search{position:relative;flex:1;min-width:200px}
   .search input{width:100%;padding:9px 12px 9px 34px;border:1px solid var(--line);border-radius:9px;
     font-size:13px;outline:none;background:#f8fafc}
   .search input:focus{border-color:var(--brand);background:#fff;box-shadow:0 0 0 3px rgba(37,99,235,.12)}
   .search::before{content:"🔍";position:absolute;left:11px;top:50%;transform:translateY(-50%);font-size:12px;opacity:.6}
-  select.filter{padding:9px 12px;border:1px solid var(--line);border-radius:9px;font-size:13px;
-    background:#f8fafc;outline:none;cursor:pointer}
+  select.filter{padding:9px 12px;border:1px solid var(--line);border-radius:9px;font-size:13px;background:#f8fafc;outline:none;cursor:pointer}
   select.filter:focus{border-color:var(--brand)}
   .btn{border:none;border-radius:9px;padding:9px 16px;font-size:13px;font-weight:600;
-    cursor:pointer;transition:.15s;display:inline-flex;align-items:center;gap:7px;white-space:nowrap;}
+    cursor:pointer;transition:.15s;display:inline-flex;align-items:center;gap:7px;white-space:nowrap}
   .btn.primary{background:var(--brand);color:#fff}
   .btn.primary:hover{background:var(--brand-dark)}
   .btn.ghost{background:#f1f5f9;color:#334155;border:1px solid var(--line)}
@@ -58,69 +56,34 @@
   .btn.green:hover{background:#15803d}
   .btn.danger{background:#fee2e2;color:var(--red)}
   .btn.danger:hover{background:#fecaca}
-
-  /* ---------- TABLE ---------- */
+  /* ---------- TABLE (MAIN, SINGLE COLUMN) ---------- */
   .table-card{background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden}
   .table-wrap{overflow:auto;max-height:calc(100vh - 330px);min-height:220px}
-  table{border-collapse:separate;border-spacing:0;width:100%;table-layout:fixed}
+  table{border-collapse:separate;border-spacing:0;width:100%}
   thead th{
-    position:sticky;top:0;z-index:2;
-    background:#1e293b;color:#e2e8f0;
+    position:sticky;top:0;z-index:2;background:#1e293b;color:#e2e8f0;
     font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;
-    padding:13px 18px;text-align:left;
+    padding:13px 16px;text-align:left;white-space:nowrap;
   }
-  tbody td{padding:0;border-bottom:1px solid var(--line);background:#fff;vertical-align:top}
-
-  /* baris utama */
-  tr.main-row{cursor:pointer;transition:.12s}
-  tr.main-row:hover td{background:#eff6ff}
-  tr.main-row.open td{background:#dbeafe}
-  tr.main-row td{padding:14px 18px}
-  .proof-cell{display:flex;align-items:center;gap:10px}
-  .chev{
-    color:#94a3b8;transition:transform .2s;font-size:11px;flex:none;
-    width:20px;height:20px;display:grid;place-items:center;border-radius:50%;background:#f1f5f9;
-  }
-  tr.main-row.open .chev{transform:rotate(90deg);color:#fff;background:var(--brand)}
-  .proof-value{font-weight:700;color:#1e293b;font-size:13.5px;letter-spacing:.2px}
-  .proof-value.empty{color:#94a3b8;font-weight:500;font-style:italic}
-  .proof-meta{margin-left:auto;font-size:11px;color:#64748b;font-weight:600}
-
-  /* baris detail */
-  tr.detail-row td{padding:0;border-bottom:2px solid #cbd5e1}
-  .detail-panel{padding:18px 20px 18px 48px;background:#f8fafc;border-left:3px solid var(--brand);
-    animation:slide .22s ease}
-  @keyframes slide{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
-  .detail-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px 14px}
-  .detail-item{display:flex;flex-direction:column;gap:3px;padding:9px 12px;background:#fff;
-    border:1px solid #e2e8f0;border-radius:9px}
-  .detail-item.full{grid-column:1/-1}
-  .detail-item .dl{font-size:10px;color:#64748b;text-transform:uppercase;letter-spacing:.5px;font-weight:700}
-  .detail-item .dv{font-size:13px;color:#0f172a;font-weight:500;word-break:break-word;line-height:1.4}
-  .detail-item .dv.empty{color:#cbd5e1;font-style:italic}
-
-  .pill{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700}
-  .pill.open{background:#fef3c7;color:#92400e}
-  .pill.proses{background:#dbeafe;color:#1e40af}
-  .pill.selesai{background:#dcfce7;color:#166534}
-  .pill.batal{background:#fee2e2;color:#991b1b}
-  .yn{font-weight:700}
-  .yn.ya{color:var(--green)}
-  .yn.tidak{color:#94a3b8}
-
-  .detail-actions{display:flex;gap:8px;margin-top:14px;padding-top:14px;border-top:1px dashed #cbd5e1}
-  .detail-actions .btn{padding:7px 14px;font-size:12px}
-
-  .empty{padding:70px 20px;text-align:center;color:var(--muted)}
-  .empty .big{font-size:42px;margin-bottom:12px}
-
-  /* ---------- MODAL ---------- */
+  tbody td{padding:12px 16px;border-bottom:1px solid var(--line);background:#fff}
+  tbody tr{cursor:pointer;transition:.12s}
+  tbody tr:hover td{background:#eff6ff}
+  .btk-row{display:flex;align-items:center;gap:12px}
+  .btk-icon{font-size:16px;color:var(--brand)}
+  .btk-val{font-weight:700;color:#0f172a;font-size:13.5px;letter-spacing:.2px}
+  .btk-hint{margin-left:auto;font-size:11px;font-weight:600;color:var(--brand);
+    background:#dbeafe;padding:4px 10px;border-radius:20px;display:inline-flex;align-items:center;gap:5px}
+  .btk-empty{color:#94a3b8;font-style:italic}
+  .empty{padding:60px 20px;text-align:center;color:var(--muted)}
+  .empty .big{font-size:38px;margin-bottom:10px}
+  /* ---------- MODALS (GENERAL) ---------- */
   .overlay{position:fixed;inset:0;background:rgba(15,23,42,.55);backdrop-filter:blur(2px);
-    display:none;align-items:center;justify-content:center;padding:20px;z-index:50;}
+    display:none;align-items:center;justify-content:center;padding:20px;z-index:50}
   .overlay.show{display:flex}
   .modal{background:#fff;border-radius:16px;width:min(1080px,100%);max-height:92vh;
-    display:flex;flex-direction:column;box-shadow:0 24px 60px rgba(0,0,0,.35);animation:pop .18s ease;}
+    display:flex;flex-direction:column;box-shadow:0 24px 60px rgba(0,0,0,.35);animation:pop .18s ease}
   .modal.small{width:min(680px,100%)}
+  .modal.detail{width:min(1400px,100%)}
   @keyframes pop{from{transform:scale(.96);opacity:0}to{transform:scale(1);opacity:1}}
   .modal-head{padding:16px 22px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:12px}
   .modal-head h2{font-size:16px;font-weight:700}
@@ -135,39 +98,86 @@
   .field label{font-size:11px;font-weight:700;color:#475569;text-transform:uppercase;letter-spacing:.4px}
   .field input,.field select,.field textarea{
     padding:9px 11px;border:1px solid var(--line);border-radius:8px;font-size:13px;
-    font-family:inherit;outline:none;background:#f8fafc;width:100%;}
+    font-family:inherit;outline:none;background:#f8fafc;width:100%}
   .field input:focus,.field select:focus,.field textarea:focus{
-    border-color:var(--brand);background:#fff;box-shadow:0 0 0 3px rgba(37,99,235,.12);}
+    border-color:var(--brand);background:#fff;box-shadow:0 0 0 3px rgba(37,99,235,.12)}
   .field textarea{resize:vertical;min-height:64px}
   .modal-foot{padding:14px 22px;border-top:1px solid var(--line);display:flex;gap:10px;align-items:center}
   .spacer{flex:1}
-
+  /* ---------- DETAIL MODAL (HORIZONTAL LAYOUT) ---------- */
+  .detail-head-info{
+    display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-bottom:16px;
+    padding:14px 16px;background:linear-gradient(120deg,#eff6ff,#f0f9ff);
+    border:1px solid #bfdbfe;border-radius:12px;
+  }
+  .detail-head-info .dh-lbl{font-size:11px;color:#1e40af;font-weight:700;
+    text-transform:uppercase;letter-spacing:.5px}
+  .detail-head-info .dh-val{font-size:15px;font-weight:700;color:#0f172a}
+  .detail-head-info .dh-sep{width:1px;height:26px;background:#bfdbfe}
+  .detail-scroll-hint{
+    display:flex;align-items:center;gap:8px;font-size:11.5px;color:#64748b;font-weight:600;
+    margin-bottom:10px;padding:8px 12px;background:#f8fafc;border-radius:8px;border:1px dashed #cbd5e1;
+  }
+  .detail-track{
+    display:flex;gap:12px;overflow-x:auto;overflow-y:hidden;
+    padding:4px 4px 16px 4px; scroll-behavior:smooth;
+  }
+  .detail-track::-webkit-scrollbar{height:10px}
+  .detail-track::-webkit-scrollbar-track{background:#f1f5f9;border-radius:10px}
+  .detail-track::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:10px}
+  .detail-track::-webkit-scrollbar-thumb:hover{background:#94a3b8}
+  .d-card{
+    flex:0 0 auto;width:200px;background:#fff;border:1px solid var(--line);
+    border-radius:12px;padding:14px 14px 16px;display:flex;flex-direction:column;gap:8px;
+    position:relative;transition:.15s;
+  }
+  .d-card:hover{border-color:#93c5fd;box-shadow:0 4px 14px rgba(37,99,235,.10);transform:translateY(-1px)}
+  .d-card.wide{width:320px}
+  .d-card .d-lbl{
+    font-size:10.5px;font-weight:800;color:#1e40af;text-transform:uppercase;
+    letter-spacing:.5px;padding-bottom:8px;border-bottom:1px dashed #e2e8f0;
+  }
+  .d-card .d-val{
+    font-size:13px;color:#0f172a;line-height:1.5;word-break:break-word;
+    white-space:normal;font-weight:500;
+  }
+  .d-card .d-val.muted{color:#94a3b8;font-style:italic;font-weight:400}
+  .d-card .d-num{
+    position:absolute;top:8px;right:10px;font-size:10px;font-weight:800;color:#cbd5e1;
+  }
+  .d-card .pill{display:inline-block;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700}
+  .d-card .pill.open{background:#fef3c7;color:#92400e}
+  .d-card .pill.proses{background:#dbeafe;color:#1e40af}
+  .d-card .pill.selesai{background:#dcfce7;color:#166534}
+  .d-card .pill.batal{background:#fee2e2;color:#991b1b}
+  .d-card .yn{font-weight:800}
+  .d-card .yn.ya{color:var(--green)}
+  .d-card .yn.tidak{color:#94a3b8}
+  .d-card.accent{border-color:#a7f3d0;background:#f0fdf4}
+  .d-card.accent .d-lbl{color:#166534;border-bottom-color:#bbf7d0}
   /* ---------- IMPORT MODAL ---------- */
   .drop-zone{border:2px dashed #cbd5e1;border-radius:14px;padding:34px 20px;text-align:center;
-    background:#f8fafc;cursor:pointer;transition:.15s;}
+    background:#f8fafc;cursor:pointer;transition:.15s}
   .drop-zone:hover,.drop-zone.drag{border-color:var(--brand);background:#eff6ff}
   .drop-zone .icon{font-size:42px;margin-bottom:10px}
   .drop-zone .ttl{font-size:14px;font-weight:700;color:#1e293b}
   .drop-zone .hint{font-size:12px;color:var(--muted);margin-top:6px}
   .file-chip{display:none;align-items:center;gap:10px;margin-top:14px;padding:12px 16px;
-    background:#ecfdf5;border:1px solid #a7f3d0;border-radius:10px;}
+    background:#ecfdf5;border:1px solid #a7f3d0;border-radius:10px}
   .file-chip.show{display:flex}
   .file-chip .fc-icon{font-size:22px}
   .file-chip .fc-name{font-weight:700;color:#065f46;font-size:13px}
   .file-chip .fc-meta{font-size:11px;color:#047857;margin-top:2px}
   .file-chip .fc-x{margin-left:auto;background:#d1fae5;border:none;width:28px;height:28px;border-radius:7px;cursor:pointer;color:#065f46}
   .file-chip .fc-x:hover{background:#a7f3d0}
-  .opt-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:16px;padding:14px;
-    background:#f8fafc;border-radius:10px;border:1px solid var(--line)}
+  .opt-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:16px;padding:14px;background:#f8fafc;border-radius:10px;border:1px solid var(--line)}
   .opt-row label{font-size:12px;font-weight:600;color:#334155;cursor:pointer;display:flex;align-items:center;gap:6px}
   .preview-box{margin-top:14px;display:none;border:1px solid var(--line);border-radius:10px;overflow:hidden}
   .preview-box.show{display:block}
-  .preview-head{padding:10px 14px;background:#f1f5f9;font-size:12px;font-weight:700;color:#334155;
-    border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}
+  .preview-head{padding:10px 14px;background:#f1f5f9;font-size:12px;font-weight:700;color:#334155;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}
   .preview-scroll{max-height:230px;overflow:auto}
-  .preview-scroll table{width:100%;font-size:11px}
-  .preview-scroll th{position:sticky;top:0;background:#e2e8f0;color:#1e293b;padding:7px 10px;
-    font-size:10px;text-align:left;white-space:nowrap}
+  .preview-scroll table{width:100%;font-size:11px;min-width:0}
+  .preview-scroll th{position:sticky;top:0;background:#e2e8f0;color:#1e293b;padding:7px 10px;font-size:10px;text-align:left;white-space:nowrap}
   .preview-scroll td{padding:6px 10px;border-bottom:1px solid #f1f5f9;white-space:nowrap}
   .mapping-list{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
   .map-tag{font-size:10.5px;padding:4px 9px;border-radius:6px;background:#dcfce7;color:#166534;font-weight:600}
@@ -177,20 +187,18 @@
   .alert.info{background:#dbeafe;color:#1e40af}
   .alert.warn{background:#fef3c7;color:#92400e}
   .alert.err{background:#fee2e2;color:#991b1b}
-
   /* ---------- TOAST ---------- */
   .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);
     background:#0f172a;color:#fff;padding:11px 20px;border-radius:10px;font-size:13px;font-weight:600;
-    opacity:0;transition:.28s;z-index:99;pointer-events:none;max-width:90vw;text-align:center;}
+    opacity:0;transition:.28s;z-index:99;pointer-events:none;max-width:90vw;text-align:center}
   .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-
   @media(max-width:640px){
     body{padding:10px}
     .page-head{padding:16px}
     .page-head h1{font-size:16px}
     .head-badge{display:none}
-    .detail-panel{padding:14px}
-    .proof-meta{display:none}
+    .d-card{width:180px}
+    .d-card.wide{width:260px}
   }
 </style>
 </head>
@@ -201,7 +209,7 @@
   <div class="logo">📦</div>
   <div>
     <h1>Kontrol Pengiriman Sparepart</h1>
-    <p>Klik pada <b>Bukti Transaksi Kirim</b> untuk melihat detail lengkap pengiriman</p>
+    <p>Klik <b>Bukti Transaksi Kirim</b> untuk melihat detail lengkap pengiriman</p>
   </div>
   <div class="head-badge">📅 <span id="today"></span></div>
 </div>
@@ -230,17 +238,46 @@
   <button class="btn primary" id="addBtn">＋ Tambah Data</button>
 </div>
 
-<!-- ================= TABEL ================= -->
+<!-- ================= TABEL (SINGLE COLUMN) ================= -->
 <div class="table-card">
   <div class="table-wrap">
     <table>
-      <thead id="thead"></thead>
+      <thead>
+        <tr><th>Bukti Transaksi Kirim</th></tr>
+      </thead>
       <tbody id="tbody"></tbody>
     </table>
   </div>
 </div>
 
-<!-- ================= MODAL FORM ================= -->
+<!-- ================= MODAL DETAIL (HORIZONTAL) ================= -->
+<div class="overlay" id="detailOverlay">
+  <div class="modal detail">
+    <div class="modal-head">
+      <div>
+        <h2 id="detailTitle">Detail Pengiriman</h2>
+        <div class="sub" id="detailSub">Semua kolom ditampilkan berjajar ke samping — geser horizontal untuk melihat seluruh data</div>
+      </div>
+      <button class="close-x" id="detailCloseX">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="detail-head-info" id="detailHeadInfo"></div>
+      <div class="detail-scroll-hint">
+        <span>↔</span>
+        <span>Geser ke samping untuk melihat seluruh 21 kolom data</span>
+      </div>
+      <div class="detail-track" id="detailTrack"></div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn danger" id="detailDeleteBtn">🗑 Hapus</button>
+      <div class="spacer"></div>
+      <button class="btn ghost" id="detailCloseBtn">Tutup</button>
+      <button class="btn primary" id="detailEditBtn">✏ Edit Data</button>
+    </div>
+  </div>
+</div>
+
+<!-- ================= MODAL FORM (ADD/EDIT) ================= -->
 <div class="overlay" id="overlay">
   <div class="modal">
     <div class="modal-head">
@@ -254,7 +291,6 @@
       <form id="dataForm" class="form-grid" onsubmit="return false"></form>
     </div>
     <div class="modal-foot">
-      <button class="btn danger" id="deleteBtn" style="display:none">🗑 Hapus</button>
       <div class="spacer"></div>
       <button class="btn ghost" id="cancelBtn">Batal</button>
       <button class="btn primary" id="saveBtn">💾 Simpan</button>
@@ -268,7 +304,7 @@
     <div class="modal-head">
       <div>
         <h2>📥 Upload Data dari Excel</h2>
-        <div class="sub">Format didukung: .xlsx, .xls, .csv — header baris pertama harus sesuai nama kolom</div>
+        <div class="sub">Format: .xlsx, .xls, .csv — baris pertama harus berisi nama kolom</div>
       </div>
       <button class="close-x" id="importCloseX">✕</button>
     </div>
@@ -357,27 +393,33 @@ const STORAGE_KEY = 'kontrol_sparepart_v1';
    ========================================================= */
 function seed(){
   return [
-    { id:1, nomor:'1', site:'JKT-01', buktiTransaksiKirim:'TRX-2024-0011', tanggalReservasi:'2024-06-03',
+    {
+      id:1, nomor:'1', site:'JKT-01', buktiTransaksiKirim:'TRX-2024-0011', tanggalReservasi:'2024-06-03',
       buktiServiceCall:'SC-88213', buktiServiceJob:'SJ-4421', statusServiceCall:'Selesai',
       partNumber:'PN-AX4510', deskripsiPartNumber:'Fan Cooling Unit 24V', qty:'2',
       nomorSeriMaterial:'SN-778112', kembaliKePabrik:'Tidak', klaimKeHIT:'Ya',
       lokasiReservasi:'Gudang Jakarta', lokasiStok:'Rak A-12', lokasiTujuan:'Site JKT-01',
       buktiReservasi:'RSV-0091', nomorPO:'PO-4500123', invoiceKeHIT:'INV-HIT-0098',
-      buktiTerima:'BA-2201', analisisSA:'Kerusakan bearing, diganti unit baru' },
-    { id:2, nomor:'2', site:'SBY-02', buktiTransaksiKirim:'TRX-2024-0012', tanggalReservasi:'2024-06-07',
+      buktiTerima:'BA-2201', analisisSA:'Kerusakan bearing, diganti unit baru'
+    },
+    {
+      id:2, nomor:'2', site:'SBY-02', buktiTransaksiKirim:'TRX-2024-0012', tanggalReservasi:'2024-06-07',
       buktiServiceCall:'SC-88240', buktiServiceJob:'SJ-4430', statusServiceCall:'Proses',
       partNumber:'PN-BX2201', deskripsiPartNumber:'Hydraulic Hose Assembly', qty:'5',
       nomorSeriMaterial:'SN-990233', kembaliKePabrik:'Ya', klaimKeHIT:'Ya',
       lokasiReservasi:'Gudang Surabaya', lokasiStok:'Rak C-04', lokasiTujuan:'Site SBY-02',
       buktiReservasi:'RSV-0098', nomorPO:'PO-4500141', invoiceKeHIT:'-',
-      buktiTerima:'-', analisisSA:'Menunggu analisa dari pabrik' },
-    { id:3, nomor:'3', site:'MDN-03', buktiTransaksiKirim:'TRX-2024-0013', tanggalReservasi:'2024-06-11',
+      buktiTerima:'-', analisisSA:'Menunggu analisa dari pabrik'
+    },
+    {
+      id:3, nomor:'3', site:'MDN-03', buktiTransaksiKirim:'TRX-2024-0013', tanggalReservasi:'2024-06-11',
       buktiServiceCall:'SC-88255', buktiServiceJob:'SJ-4455', statusServiceCall:'Open',
       partNumber:'PN-CZ7788', deskripsiPartNumber:'Control Valve Solenoid', qty:'1',
       nomorSeriMaterial:'SN-334901', kembaliKePabrik:'Tidak', klaimKeHIT:'Tidak',
       lokasiReservasi:'Gudang Medan', lokasiStok:'Rak B-07', lokasiTujuan:'Site MDN-03',
       buktiReservasi:'RSV-0102', nomorPO:'PO-4500155', invoiceKeHIT:'-',
-      buktiTerima:'-', analisisSA:'-' }
+      buktiTerima:'-', analisisSA:'-'
+    }
   ];
 }
 
@@ -386,6 +428,7 @@ function seed(){
    ========================================================= */
 let data = [];
 let editingId = null;
+let detailId = null;
 let importRows = [];
 let importMapping = {};
 
@@ -400,6 +443,9 @@ function toast(msg){
   t._tm = setTimeout(()=>t.classList.remove('show'), 2600);
 }
 
+/* =========================================================
+   LOAD / SAVE
+   ========================================================= */
 function loadData(){
   try{
     const raw = localStorage.getItem(STORAGE_KEY);
@@ -411,40 +457,7 @@ function saveData(){
 }
 
 /* =========================================================
-   RENDER HEADER — HANYA 1 KOLOM
-   ========================================================= */
-function renderHead(){
-  $('#thead').innerHTML = '<tr><th>Bukti Transaksi Kirim</th></tr>';
-}
-
-/* =========================================================
-   BUILD DETAIL PANEL (semua 21 field)
-   ========================================================= */
-function buildDetail(d){
-  return FIELDS.map(f=>{
-    const raw = d[f.key] ?? '';
-    const full = (f.type === 'textarea' || f.key === 'deskripsiPartNumber') ? ' full' : '';
-    let inner;
-
-    if(f.key === 'statusServiceCall'){
-      const cls = String(raw).toLowerCase();
-      inner = raw ? `<span class="pill ${cls}">${esc(raw)}</span>` : `<span class="dv empty">-</span>`;
-    }else if(f.key === 'kembaliKePabrik' || f.key === 'klaimKeHIT'){
-      const cls = String(raw).toLowerCase() === 'ya' ? 'ya' : 'tidak';
-      inner = raw ? `<span class="yn ${cls}">${esc(raw)}</span>` : `<span class="dv empty">-</span>`;
-    }else{
-      inner = raw === '' ? `<span class="dv empty">-</span>` : `<span class="dv">${esc(raw)}</span>`;
-    }
-
-    return `<div class="detail-item${full}">
-      <span class="dl">${esc(f.label)}</span>
-      ${inner}
-    </div>`;
-  }).join('');
-}
-
-/* =========================================================
-   RENDER TABEL — hanya kolom Bukti Transaksi Kirim
+   RENDER TABEL (HANYA 1 KOLOM: BUKTI TRANSAKSI KIRIM)
    ========================================================= */
 function renderTable(){
   const q      = $('#searchInput').value.trim().toLowerCase();
@@ -467,69 +480,22 @@ function renderTable(){
     </td></tr>`;
   }else{
     tbody.innerHTML = rows.map(d=>{
-      const proof = d.buktiTransaksiKirim || '';
-      const hasProof = proof !== '';
-      const metaBits = [d.site, d.partNumber].filter(Boolean).join(' · ');
-
-      const mainRow = `<tr class="main-row" data-id="${d.id}" title="Klik untuk lihat detail">
+      const v = d.buktiTransaksiKirim ?? '';
+      const hasVal = v && String(v).trim() !== '';
+      return `<tr data-id="${d.id}" title="Klik untuk melihat detail lengkap">
         <td>
-          <div class="proof-cell">
-            <span class="chev">▶</span>
-            <span class="proof-value ${hasProof ? '' : 'empty'}">${esc(hasProof ? proof : '(Bukti transaksi belum diisi)')}</span>
-            ${metaBits ? `<span class="proof-meta">${esc(metaBits)}</span>` : ''}
+          <div class="btk-row">
+            <span class="btk-icon">📄</span>
+            <span class="btk-val ${hasVal ? '' : 'btk-empty'}">${hasVal ? esc(v) : '(Belum ada bukti transaksi)'}</span>
+            <span class="btk-hint">Lihat Detail →</span>
           </div>
         </td>
       </tr>`;
-
-      const detailRow = `<tr class="detail-row" data-detail-for="${d.id}" style="display:none">
-        <td>
-          <div class="detail-panel">
-            <div class="detail-grid">${buildDetail(d)}</div>
-            <div class="detail-actions">
-              <button class="btn ghost act-edit" data-id="${d.id}">✏️ Edit</button>
-              <button class="btn danger act-del" data-id="${d.id}">🗑 Hapus</button>
-            </div>
-          </div>
-        </td>
-      </tr>`;
-
-      return mainRow + detailRow;
     }).join('');
   }
 
-  /* --- Klik baris → toggle detail --- */
-  tbody.querySelectorAll('tr.main-row').forEach(tr=>{
-    tr.addEventListener('click', ()=>{
-      const id = tr.dataset.id;
-      const detail = tbody.querySelector(`tr.detail-row[data-detail-for="${id}"]`);
-      if(!detail) return;
-      const isOpen = detail.style.display !== 'none';
-      detail.style.display = isOpen ? 'none' : 'table-row';
-      tr.classList.toggle('open', !isOpen);
-    });
-  });
-
-  /* --- Tombol Edit di panel detail --- */
-  tbody.querySelectorAll('.act-edit').forEach(b=>{
-    b.addEventListener('click', e=>{
-      e.stopPropagation();
-      openModal(Number(b.dataset.id));
-    });
-  });
-
-  /* --- Tombol Hapus di panel detail --- */
-  tbody.querySelectorAll('.act-del').forEach(b=>{
-    b.addEventListener('click', e=>{
-      e.stopPropagation();
-      const id = Number(b.dataset.id);
-      const d = data.find(x=>x.id === id);
-      if(!d) return;
-      if(!confirm(`Hapus data "${d.buktiTransaksiKirim || d.partNumber}" (${d.site || '-'})?`)) return;
-      data = data.filter(x=>x.id !== id);
-      saveData();
-      renderTable();
-      toast('🗑 Data dihapus');
-    });
+  tbody.querySelectorAll('tr[data-id]').forEach(tr=>{
+    tr.addEventListener('click', ()=> openDetail(Number(tr.dataset.id)));
   });
 
   updateStats(rows);
@@ -559,7 +525,89 @@ function refreshSiteFilter(){
 }
 
 /* =========================================================
-   FORM MODAL (TAMBAH/EDIT)
+   DETAIL MODAL — SEMUA KOLOM BERJAJAR KE SAMPING
+   ========================================================= */
+function openDetail(id){
+  detailId = id;
+  const d = data.find(x=>x.id === id);
+  if(!d) return;
+
+  // Head info ringkas
+  const btk = d.buktiTransaksiKirim || '(Belum ada bukti transaksi)';
+  const site = d.site || '-';
+  const status = d.statusServiceCall || '-';
+  const statusCls = String(status).toLowerCase();
+
+  $('#detailTitle').textContent = 'Detail Pengiriman';
+  $('#detailHeadInfo').innerHTML = `
+    <div>
+      <div class="dh-lbl">Bukti Transaksi Kirim</div>
+      <div class="dh-val">${esc(btk)}</div>
+    </div>
+    <div class="dh-sep"></div>
+    <div>
+      <div class="dh-lbl">Site</div>
+      <div class="dh-val">${esc(site)}</div>
+    </div>
+    <div class="dh-sep"></div>
+    <div>
+      <div class="dh-lbl">Status Service Call</div>
+      <div class="dh-val"><span class="pill ${statusCls}">${esc(status)}</span></div>
+    </div>
+    <div class="dh-sep"></div>
+    <div>
+      <div class="dh-lbl">Part Number</div>
+      <div class="dh-val">${esc(d.partNumber || '-')}</div>
+    </div>
+  `;
+
+  // Track horizontal berisi 21 kartu (berjajar ke samping)
+  const cards = FIELDS.map((f, i)=>{
+    const raw = d[f.key];
+    const val = (raw === undefined || raw === null || String(raw).trim() === '') ? '' : String(raw);
+    const isEmpty = val === '';
+    const num = String(i + 1).padStart(2, '0');
+
+    // Kartu lebar untuk field panjang
+    const isWide = ['deskripsiPartNumber','analisisSA','lokasiReservasi','lokasiStok','lokasiTujuan'].includes(f.key);
+    // Kartu aksen hijau untuk bukti transaksi kirim
+    const isAccent = f.key === 'buktiTransaksiKirim';
+
+    let inner;
+    if(f.key === 'statusServiceCall'){
+      const cls = String(val).toLowerCase();
+      inner = isEmpty
+        ? `<div class="d-val muted">-</div>`
+        : `<div><span class="pill ${cls}">${esc(val)}</span></div>`;
+    }else if(f.key === 'kembaliKePabrik' || f.key === 'klaimKeHIT'){
+      const cls = String(val).toLowerCase() === 'ya' ? 'ya' : 'tidak';
+      inner = isEmpty
+        ? `<div class="d-val muted">-</div>`
+        : `<div class="d-val"><span class="yn ${cls}">${esc(val)}</span></div>`;
+    }else{
+      inner = `<div class="d-val ${isEmpty ? 'muted' : ''}">${isEmpty ? '-' : esc(val)}</div>`;
+    }
+
+    return `<div class="d-card ${isWide ? 'wide' : ''} ${isAccent ? 'accent' : ''}">
+      <span class="d-num">${num}</span>
+      <div class="d-lbl">${esc(f.label)}</div>
+      ${inner}
+    </div>`;
+  }).join('');
+
+  $('#detailTrack').innerHTML = cards;
+  $('#detailOverlay').classList.add('show');
+  // reset scroll ke kiri
+  setTimeout(()=>{ const t = $('#detailTrack'); if(t) t.scrollLeft = 0; }, 60);
+}
+
+function closeDetail(){
+  $('#detailOverlay').classList.remove('show');
+  detailId = null;
+}
+
+/* =========================================================
+   FORM MODAL (TAMBAH / EDIT)
    ========================================================= */
 function buildForm(){
   $('#dataForm').innerHTML = FIELDS.map(f=>{
@@ -586,12 +634,10 @@ function openModal(id = null){
 
   if(id === null){
     $('#modalTitle').textContent = 'Tambah Data Pengiriman';
-    $('#deleteBtn').style.display = 'none';
     const maxNo = data.reduce((m,d)=> Math.max(m, parseInt(d.nomor)||0), 0);
     form.elements['nomor'].value = String(maxNo + 1);
   }else{
     $('#modalTitle').textContent = 'Edit Data Pengiriman';
-    $('#deleteBtn').style.display = 'inline-flex';
     const d = data.find(x=>x.id === id);
     if(!d) return;
     FIELDS.forEach(f=>{
@@ -635,21 +681,31 @@ function saveRecord(){
   saveData();
   renderTable();
   closeModal();
+
+  // Kalau asalnya dari detail, refresh detail-nya
+  if(detailId !== null){
+    if(editingId !== null && data.some(x=>x.id === detailId)){
+      openDetail(detailId);
+    }else{
+      closeDetail();
+    }
+  }
 }
 
-function deleteRecord(){
-  if(editingId === null) return;
-  const d = data.find(x=>x.id === editingId);
-  if(!confirm(`Hapus data "${d.buktiTransaksiKirim || d.partNumber}" (${d.site})?`)) return;
-  data = data.filter(x=>x.id !== editingId);
+function deleteFromDetail(){
+  if(detailId === null) return;
+  const d = data.find(x=>x.id === detailId);
+  if(!d) return;
+  if(!confirm(`Hapus data pengiriman "${d.partNumber}" (${d.site})?`)) return;
+  data = data.filter(x=>x.id !== detailId);
   saveData();
   renderTable();
-  closeModal();
+  closeDetail();
   toast('🗑 Data dihapus');
 }
 
 /* =========================================================
-   EXPORT CSV (semua kolom)
+   EXPORT CSV
    ========================================================= */
 function exportCSV(){
   const q      = $('#searchInput').value.trim().toLowerCase();
@@ -704,31 +760,33 @@ function downloadTemplate(){
 }
 
 /* =========================================================
-   PEMETAAN HEADER EXCEL
+   IMPORT EXCEL
    ========================================================= */
-function norm(str){ return String(str||'').toLowerCase().replace(/[^a-z0-9]/g,''); }
+function norm(str){
+  return String(str || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+}
 
 const HEADER_ALIASES = {
-  nomor:               ['nomor','no','nomer','nomorurut'],
+  nomor:               ['nomor','no','nomer','nomorurut','no.'],
   site:                ['site','sitelokasi','lokasisite','lokasi'],
   buktiTransaksiKirim: ['buktitransaksikirim','buktikirim','buktitransaksi','transactionproof'],
-  tanggalReservasi:    ['tanggalreservasi','tglreservasi','tanggalresv','tglresv','reservationdate'],
-  buktiServiceCall:    ['buktiservicecall','servicecall','sc','bukti_sc'],
-  buktiServiceJob:     ['buktiservicejob','servicejob','sj','bukti_sj'],
+  tanggalReservasi:    ['tanggalreservasi','tglreservasi','tglresv','reservationdate'],
+  buktiServiceCall:    ['buktiservicecall','servicecall','sc'],
+  buktiServiceJob:     ['buktiservicejob','servicejob','sj'],
   statusServiceCall:   ['statusservicecall','statussc','status','statuscall'],
-  partNumber:          ['partnumber','partno','partnum','pn','kodebarang','kode_part'],
+  partNumber:          ['partnumber','partno','partnum','pn','part_number','kodebarang','kode_part'],
   deskripsiPartNumber: ['deskripsipartnumber','deskripsi','description','namapart','namabarang','deskripsipart'],
   qty:                 ['qty','quantity','jumlah','kuantitas','jml'],
-  nomorSeriMaterial:   ['nomorserimaterial','nomorseri','serialnumber','serialno','sn','noseri'],
+  nomorSeriMaterial:   ['nomorserimaterial','nomorseri','serialnumber','serialno','sn','nomor_seri','noseri'],
   kembaliKePabrik:     ['kembalikepabrik','kembalipabrik','returpabrik','retur','returnpabrik'],
   klaimKeHIT:          ['klaimkeh','klaimkehit','klaim','claimhit','claim'],
   lokasiReservasi:     ['lokasireservasi','lokreservasi','lokresv','reservasilokasi'],
   lokasiStok:          ['lokasistok','lokstok','lokasigudang','gudang','rak'],
   lokasiTujuan:        ['lokasitujuan','loktujuan','tujuan','destination','lokasikirim'],
-  buktiReservasi:      ['buktireservasi','reservationproof','reservasibukti'],
-  nomorPO:             ['nomorpo','nopo','po','purchaseorder'],
+  buktiReservasi:      ['buktireservasi','bukti_reservasi','reservationproof','reservasibukti'],
+  nomorPO:             ['nomorpo','nopo','no_po','po','purchaseorder'],
   invoiceKeHIT:        ['invoicekeh','invoicekehit','invoice','invoicehit'],
-  buktiTerima:         ['bukti terima','buktiterima','terima','penerimaan','bast','ba'],
+  buktiTerima:         ['bukti terima','bukti_terima','buktiterima','terima','penerimaan','bast','ba'],
   analisisSA:          ['analisissa','analisis','analisysa','catatan','keterangan','note']
 };
 
@@ -741,19 +799,20 @@ function mapHeaders(headers){
     for(const f of FIELDS){
       if(used.has(f.key)) continue;
       const aliases = HEADER_ALIASES[f.key] || [];
-      if(aliases.some(a => norm(a) === n)){ map[f.key] = idx; used.add(f.key); return; }
+      if(aliases.some(a => norm(a) === n)){
+        map[f.key] = idx; used.add(f.key); return;
+      }
     }
     for(const f of FIELDS){
       if(used.has(f.key)) continue;
-      if(norm(f.label) === n){ map[f.key] = idx; used.add(f.key); return; }
+      if(norm(f.label) === n){
+        map[f.key] = idx; used.add(f.key); return;
+      }
     }
   });
   return map;
 }
 
-/* =========================================================
-   IMPORT EXCEL
-   ========================================================= */
 function openImportModal(){
   importRows = [];
   importMapping = {};
@@ -812,7 +871,6 @@ function handleFile(file){
       });
 
       $('#fcMeta').textContent = (file.size/1024).toFixed(1) + ' KB · ' + importRows.length + ' baris siap diimport';
-
       renderImportPreview(headers);
       renderMappingStatus();
 
@@ -823,13 +881,13 @@ function handleFile(file){
         showAlert('Kolom "Site" dan "Part Number" tidak ditemukan pada header Excel.', 'err');
         $('#importConfirmBtn').disabled = true;
       }else if(!hasSite){
-        showAlert('Kolom "Site" tidak ditemukan. Data tetap dapat diimport namun kolom Site akan kosong.', 'warn');
+        showAlert('Kolom "Site" tidak ditemukan. Data tetap dapat diimport (kolom Site kosong).', 'warn');
         $('#importConfirmBtn').disabled = false;
       }else if(!hasPart){
-        showAlert('Kolom "Part Number" tidak ditemukan. Data tetap dapat diimport namun kolom Part Number akan kosong.', 'warn');
+        showAlert('Kolom "Part Number" tidak ditemukan. Data tetap dapat diimport (kolom Part Number kosong).', 'warn');
         $('#importConfirmBtn').disabled = false;
       }else{
-        showAlert('✓ File berhasil dibaca. Periksa preview di bawah lalu klik "Import Sekarang".', 'info');
+        showAlert('✓ File berhasil dibaca. Periksa preview lalu klik "Import Sekarang".', 'info');
         $('#importConfirmBtn').disabled = false;
       }
     }catch(err){
@@ -848,7 +906,7 @@ function showAlert(msg, type){
 }
 
 function renderImportPreview(headers){
-  const previewKeys = ['nomor','site','buktiTransaksiKirim','partNumber','qty','statusServiceCall'];
+  const previewKeys = ['nomor','site','partNumber','deskripsiPartNumber','qty','statusServiceCall'];
   const cols = previewKeys.filter(k => importMapping[k] !== undefined);
   const useCols = cols.length ? cols : FIELDS.slice(0,6).map(f=>f.key);
 
@@ -889,10 +947,8 @@ function renderMappingStatus(){
 
 function confirmImport(){
   if(!importRows.length) return;
-
   const mode = document.querySelector('input[name="importMode"]:checked').value;
   const baseId = data.length ? Math.max(...data.map(d=>d.id)) : 0;
-
   const newRecords = importRows.map((r, i)=>({ ...r, id: baseId + i + 1 }));
 
   if(mode === 'replace'){
@@ -910,33 +966,42 @@ function confirmImport(){
 }
 
 /* =========================================================
-   INISIALISASI
+   INIT
    ========================================================= */
 function init(){
   $('#today').textContent = new Date().toLocaleDateString('id-ID',
     { weekday:'long', day:'numeric', month:'long', year:'numeric' });
 
   loadData();
-  renderHead();
   buildForm();
   renderTable();
 
-  // Event CRUD
+  // Toolbar
   $('#searchInput').addEventListener('input', renderTable);
   $('#siteFilter').addEventListener('change', renderTable);
   $('#statusFilter').addEventListener('change', renderTable);
-
   $('#addBtn').addEventListener('click', ()=> openModal(null));
-  $('#closeX').addEventListener('click', closeModal);
-  $('#cancelBtn').addEventListener('click', closeModal);
-  $('#saveBtn').addEventListener('click', saveRecord);
-  $('#deleteBtn').addEventListener('click', deleteRecord);
   $('#exportBtn').addEventListener('click', exportCSV);
   $('#templateBtn').addEventListener('click', downloadTemplate);
 
+  // Form modal
+  $('#closeX').addEventListener('click', closeModal);
+  $('#cancelBtn').addEventListener('click', closeModal);
+  $('#saveBtn').addEventListener('click', saveRecord);
   $('#overlay').addEventListener('click', e=>{ if(e.target.id === 'overlay') closeModal(); });
 
-  // Import Excel
+  // Detail modal
+  $('#detailCloseX').addEventListener('click', closeDetail);
+  $('#detailCloseBtn').addEventListener('click', closeDetail);
+  $('#detailOverlay').addEventListener('click', e=>{ if(e.target.id === 'detailOverlay') closeDetail(); });
+  $('#detailEditBtn').addEventListener('click', ()=>{
+    const id = detailId;
+    closeDetail();
+    if(id !== null) openModal(id);
+  });
+  $('#detailDeleteBtn').addEventListener('click', deleteFromDetail);
+
+  // Import modal
   $('#importBtn').addEventListener('click', openImportModal);
   $('#importCloseX').addEventListener('click', closeImportModal);
   $('#importCancelBtn').addEventListener('click', closeImportModal);
@@ -958,8 +1023,7 @@ function init(){
     if(f) handleFile(f);
   });
   $('#fcRemove').addEventListener('click', ()=>{
-    importRows = []; importMapping = {};
-    fi.value = '';
+    importRows = []; importMapping = {}; fi.value = '';
     $('#fileChip').classList.remove('show');
     $('#previewBox').classList.remove('show');
     $('#mappingWrap').style.display = 'none';
@@ -971,6 +1035,7 @@ function init(){
   document.addEventListener('keydown', e=>{
     if(e.key === 'Escape'){
       if($('#importOverlay').classList.contains('show')) closeImportModal();
+      else if($('#detailOverlay').classList.contains('show')) closeDetail();
       else closeModal();
     }
     if(e.key === 'Enter' && $('#overlay').classList.contains('show') && e.target.tagName !== 'TEXTAREA'){
