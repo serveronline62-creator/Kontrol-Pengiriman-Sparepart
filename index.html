@@ -56,105 +56,114 @@
   .btn.green:hover{background:#15803d}
   .btn.danger{background:#fee2e2;color:var(--red)}
   .btn.danger:hover{background:#fecaca}
-  /* ---------- TABLE (MAIN, SINGLE COLUMN) ---------- */
+  /* ---------- MAIN LIST (hanya Bukti Transaksi Kirim) ---------- */
   .table-card{background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden}
   .table-wrap{overflow:auto;max-height:calc(100vh - 330px);min-height:220px}
   table{border-collapse:separate;border-spacing:0;width:100%}
-  thead th{
-    position:sticky;top:0;z-index:2;background:#1e293b;color:#e2e8f0;
-    font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;
-    padding:13px 16px;text-align:left;white-space:nowrap;
-  }
-  tbody td{padding:12px 16px;border-bottom:1px solid var(--line);background:#fff}
+  thead th{position:sticky;top:0;z-index:2;background:#1e293b;color:#e2e8f0;
+    font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.4px;
+    padding:12px 18px;text-align:left;white-space:nowrap}
+  tbody td{padding:14px 18px;border-bottom:1px solid var(--line);background:#fff;vertical-align:middle}
   tbody tr{cursor:pointer;transition:.12s}
   tbody tr:hover td{background:#eff6ff}
-  .btk-row{display:flex;align-items:center;gap:12px}
-  .btk-icon{font-size:16px;color:var(--brand)}
-  .btk-val{font-weight:700;color:#0f172a;font-size:13.5px;letter-spacing:.2px}
-  .btk-hint{margin-left:auto;font-size:11px;font-weight:600;color:var(--brand);
-    background:#dbeafe;padding:4px 10px;border-radius:20px;display:inline-flex;align-items:center;gap:5px}
-  .btk-empty{color:#94a3b8;font-style:italic}
+  .btk-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+  .btk-icon{width:34px;height:34px;border-radius:9px;background:#dbeafe;color:var(--brand);
+    display:grid;place-items:center;font-size:16px;flex:none}
+  .btk-value{font-size:14px;font-weight:700;color:#1e293b;letter-spacing:.2px}
+  .btk-badges{display:flex;gap:8px;margin-left:auto;flex-wrap:wrap}
+  .btk-badge{font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px;
+    background:#f1f5f9;color:#475569;border:1px solid var(--line)}
+  .btk-badge.blue{background:#dbeafe;color:#1e40af;border-color:#bfdbfe}
+  .btk-badge.green{background:#dcfce7;color:#166534;border-color:#bbf7d0}
+  .btk-arrow{font-size:16px;color:#94a3b8;flex:none;transition:.15s}
+  tbody tr:hover .btk-arrow{color:var(--brand);transform:translateX(4px)}
   .empty{padding:60px 20px;text-align:center;color:var(--muted)}
   .empty .big{font-size:38px;margin-bottom:10px}
-  /* ---------- MODALS (GENERAL) ---------- */
+  /* ---------- MODAL ---------- */
   .overlay{position:fixed;inset:0;background:rgba(15,23,42,.55);backdrop-filter:blur(2px);
     display:none;align-items:center;justify-content:center;padding:20px;z-index:50}
   .overlay.show{display:flex}
   .modal{background:#fff;border-radius:16px;width:min(1080px,100%);max-height:92vh;
     display:flex;flex-direction:column;box-shadow:0 24px 60px rgba(0,0,0,.35);animation:pop .18s ease}
   .modal.small{width:min(680px,100%)}
-  .modal.detail{width:min(1400px,100%)}
+  .modal.wide{width:min(1500px,100%)}
   @keyframes pop{from{transform:scale(.96);opacity:0}to{transform:scale(1);opacity:1}}
   .modal-head{padding:16px 22px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:12px}
   .modal-head h2{font-size:16px;font-weight:700}
-  .modal-head .sub{font-size:11px;color:var(--muted);margin-top:2px}
+  .modal-head .sub{font-size:11px;color:var(--muted);margin-top:3px}
   .close-x{margin-left:auto;background:#f1f5f9;border:none;width:32px;height:32px;border-radius:8px;
-    cursor:pointer;font-size:15px;color:#475569}
+    cursor:pointer;font-size:15px;color:#475569;flex:none}
   .close-x:hover{background:#e2e8f0}
   .modal-body{padding:20px 22px;overflow-y:auto}
+  .modal-foot{padding:14px 22px;border-top:1px solid var(--line);display:flex;gap:10px;align-items:center}
+  .spacer{flex:1}
+  /* ---------- FORM ---------- */
   .form-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
   .field{display:flex;flex-direction:column;gap:5px}
   .field.full{grid-column:1/-1}
   .field label{font-size:11px;font-weight:700;color:#475569;text-transform:uppercase;letter-spacing:.4px}
-  .field input,.field select,.field textarea{
-    padding:9px 11px;border:1px solid var(--line);border-radius:8px;font-size:13px;
-    font-family:inherit;outline:none;background:#f8fafc;width:100%}
+  .field input,.field select,.field textarea{padding:9px 11px;border:1px solid var(--line);border-radius:8px;
+    font-size:13px;font-family:inherit;outline:none;background:#f8fafc;width:100%}
   .field input:focus,.field select:focus,.field textarea:focus{
     border-color:var(--brand);background:#fff;box-shadow:0 0 0 3px rgba(37,99,235,.12)}
   .field textarea{resize:vertical;min-height:64px}
-  .modal-foot{padding:14px 22px;border-top:1px solid var(--line);display:flex;gap:10px;align-items:center}
-  .spacer{flex:1}
-  /* ---------- DETAIL MODAL (HORIZONTAL LAYOUT) ---------- */
-  .detail-head-info{
-    display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-bottom:16px;
-    padding:14px 16px;background:linear-gradient(120deg,#eff6ff,#f0f9ff);
-    border:1px solid #bfdbfe;border-radius:12px;
+  /* ---------- DETAIL MODAL: KARTU BERJAJAR KESAMPING ---------- */
+  .detail-title-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  .detail-title-row .key{font-size:16px;font-weight:700;color:#1e293b;letter-spacing:.2px}
+  .detail-title-row .count-pill{font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px;
+    background:#dbeafe;color:#1e40af}
+  .detail-hint{font-size:11px;color:var(--muted);margin-top:4px}
+  .detail-cards{
+    display:flex; gap:16px;
+    overflow-x:auto; overflow-y:hidden;
+    padding:20px 22px;
+    background:#f8fafc;
+    min-height:340px;
+    scroll-snap-type:x proximity;
   }
-  .detail-head-info .dh-lbl{font-size:11px;color:#1e40af;font-weight:700;
-    text-transform:uppercase;letter-spacing:.5px}
-  .detail-head-info .dh-val{font-size:15px;font-weight:700;color:#0f172a}
-  .detail-head-info .dh-sep{width:1px;height:26px;background:#bfdbfe}
-  .detail-scroll-hint{
-    display:flex;align-items:center;gap:8px;font-size:11.5px;color:#64748b;font-weight:600;
-    margin-bottom:10px;padding:8px 12px;background:#f8fafc;border-radius:8px;border:1px dashed #cbd5e1;
+  .detail-cards::-webkit-scrollbar{height:12px}
+  .detail-cards::-webkit-scrollbar-track{background:#e2e8f0;border-radius:6px}
+  .detail-cards::-webkit-scrollbar-thumb{background:#94a3b8;border-radius:6px}
+  .detail-cards::-webkit-scrollbar-thumb:hover{background:#64748b}
+  .detail-card{
+    flex:0 0 320px;
+    scroll-snap-align:start;
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:12px;
+    overflow:hidden;
+    box-shadow:0 2px 10px rgba(15,23,42,.06);
+    display:flex;flex-direction:column;
+    max-height:calc(92vh - 220px);
+    transition:.15s;
   }
-  .detail-track{
-    display:flex;gap:12px;overflow-x:auto;overflow-y:hidden;
-    padding:4px 4px 16px 4px; scroll-behavior:smooth;
-  }
-  .detail-track::-webkit-scrollbar{height:10px}
-  .detail-track::-webkit-scrollbar-track{background:#f1f5f9;border-radius:10px}
-  .detail-track::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:10px}
-  .detail-track::-webkit-scrollbar-thumb:hover{background:#94a3b8}
-  .d-card{
-    flex:0 0 auto;width:200px;background:#fff;border:1px solid var(--line);
-    border-radius:12px;padding:14px 14px 16px;display:flex;flex-direction:column;gap:8px;
-    position:relative;transition:.15s;
-  }
-  .d-card:hover{border-color:#93c5fd;box-shadow:0 4px 14px rgba(37,99,235,.10);transform:translateY(-1px)}
-  .d-card.wide{width:320px}
-  .d-card .d-lbl{
-    font-size:10.5px;font-weight:800;color:#1e40af;text-transform:uppercase;
-    letter-spacing:.5px;padding-bottom:8px;border-bottom:1px dashed #e2e8f0;
-  }
-  .d-card .d-val{
-    font-size:13px;color:#0f172a;line-height:1.5;word-break:break-word;
-    white-space:normal;font-weight:500;
-  }
-  .d-card .d-val.muted{color:#94a3b8;font-style:italic;font-weight:400}
-  .d-card .d-num{
-    position:absolute;top:8px;right:10px;font-size:10px;font-weight:800;color:#cbd5e1;
-  }
-  .d-card .pill{display:inline-block;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700}
-  .d-card .pill.open{background:#fef3c7;color:#92400e}
-  .d-card .pill.proses{background:#dbeafe;color:#1e40af}
-  .d-card .pill.selesai{background:#dcfce7;color:#166534}
-  .d-card .pill.batal{background:#fee2e2;color:#991b1b}
-  .d-card .yn{font-weight:800}
-  .d-card .yn.ya{color:var(--green)}
-  .d-card .yn.tidak{color:#94a3b8}
-  .d-card.accent{border-color:#a7f3d0;background:#f0fdf4}
-  .d-card.accent .d-lbl{color:#166534;border-bottom-color:#bbf7d0}
+  .detail-card:hover{box-shadow:0 6px 20px rgba(15,23,42,.12);border-color:#bfdbfe}
+  .dc-head{padding:12px 14px;background:linear-gradient(120deg,#1e293b,#334155);color:#fff;
+    display:flex;align-items:center;gap:10px;flex:none}
+  .dc-nomor{font-weight:700;font-size:14px;letter-spacing:.3px}
+  .dc-head .pill{margin-left:auto}
+  .dc-body{padding:12px 14px;overflow-y:auto;flex:1;display:flex;flex-direction:column;gap:10px}
+  .dc-body::-webkit-scrollbar{width:6px}
+  .dc-body::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:3px}
+  .dc-field{display:flex;flex-direction:column;gap:3px;padding-bottom:8px;border-bottom:1px dashed #f1f5f9}
+  .dc-field:last-child{border-bottom:none;padding-bottom:0}
+  .dc-label{font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.4px}
+  .dc-value{font-size:12.5px;color:var(--ink);word-break:break-word;line-height:1.4}
+  .dc-value.hi{font-weight:700;color:#1e293b}
+  .dc-actions{padding:10px 14px;border-top:1px solid var(--line);display:flex;gap:8px;background:#f8fafc;flex:none}
+  .btn-icon{padding:6px 12px;border-radius:7px;border:1px solid var(--line);background:#fff;
+    cursor:pointer;font-size:12px;font-weight:600;color:#334155;transition:.12s}
+  .btn-icon:hover{background:#eff6ff;border-color:var(--brand);color:var(--brand)}
+  .btn-icon.danger{color:var(--red)}
+  .btn-icon.danger:hover{background:#fee2e2;border-color:var(--red)}
+  .detail-summary{font-size:12px;color:#475569;font-weight:600}
+  .detail-summary b{color:#1e293b}
+  /* ---------- PILL STATUS ---------- */
+  .pill{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700}
+  .pill.open{background:#fef3c7;color:#92400e}
+  .pill.proses{background:#dbeafe;color:#1e40af}
+  .pill.selesai{background:#dcfce7;color:#166534}
+  .pill.batal{background:#fee2e2;color:#991b1b}
   /* ---------- IMPORT MODAL ---------- */
   .drop-zone{border:2px dashed #cbd5e1;border-radius:14px;padding:34px 20px;text-align:center;
     background:#f8fafc;cursor:pointer;transition:.15s}
@@ -170,11 +179,13 @@
   .file-chip .fc-meta{font-size:11px;color:#047857;margin-top:2px}
   .file-chip .fc-x{margin-left:auto;background:#d1fae5;border:none;width:28px;height:28px;border-radius:7px;cursor:pointer;color:#065f46}
   .file-chip .fc-x:hover{background:#a7f3d0}
-  .opt-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:16px;padding:14px;background:#f8fafc;border-radius:10px;border:1px solid var(--line)}
+  .opt-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:16px;padding:14px;
+    background:#f8fafc;border-radius:10px;border:1px solid var(--line)}
   .opt-row label{font-size:12px;font-weight:600;color:#334155;cursor:pointer;display:flex;align-items:center;gap:6px}
   .preview-box{margin-top:14px;display:none;border:1px solid var(--line);border-radius:10px;overflow:hidden}
   .preview-box.show{display:block}
-  .preview-head{padding:10px 14px;background:#f1f5f9;font-size:12px;font-weight:700;color:#334155;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}
+  .preview-head{padding:10px 14px;background:#f1f5f9;font-size:12px;font-weight:700;color:#334155;
+    border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}
   .preview-scroll{max-height:230px;overflow:auto}
   .preview-scroll table{width:100%;font-size:11px;min-width:0}
   .preview-scroll th{position:sticky;top:0;background:#e2e8f0;color:#1e293b;padding:7px 10px;font-size:10px;text-align:left;white-space:nowrap}
@@ -197,8 +208,7 @@
     .page-head{padding:16px}
     .page-head h1{font-size:16px}
     .head-badge{display:none}
-    .d-card{width:180px}
-    .d-card.wide{width:260px}
+    .detail-card{flex:0 0 260px}
   }
 </style>
 </head>
@@ -209,14 +219,14 @@
   <div class="logo">📦</div>
   <div>
     <h1>Kontrol Pengiriman Sparepart</h1>
-    <p>Klik <b>Bukti Transaksi Kirim</b> untuk melihat detail lengkap pengiriman</p>
+    <p>Klik salah satu <b>Bukti Transaksi Kirim</b> untuk melihat detail seluruh item terkait</p>
   </div>
   <div class="head-badge">📅 <span id="today"></span></div>
 </div>
 
 <!-- ================= STATISTIK ================= -->
 <div class="stats">
-  <div class="stat b"><div class="lbl">Total Data</div><div class="val" id="stTotal">0</div></div>
+  <div class="stat b"><div class="lbl">Total Bukti Transaksi</div><div class="val" id="stTotal">0</div></div>
   <div class="stat g"><div class="lbl">Total Qty</div><div class="val" id="stQty">0</div></div>
   <div class="stat a"><div class="lbl">Status Open / Proses</div><div class="val" id="stOpen">0</div></div>
   <div class="stat r"><div class="lbl">Kembali ke Pabrik</div><div class="val" id="stPabrik">0</div></div>
@@ -225,7 +235,7 @@
 <!-- ================= TOOLBAR ================= -->
 <div class="toolbar">
   <div class="search">
-    <input type="text" id="searchInput" placeholder="Cari part number, site, nomor PO, bukti transaksi...">
+    <input type="text" id="searchInput" placeholder="Cari bukti transaksi, part number, site, nomor PO...">
   </div>
   <select class="filter" id="siteFilter"><option value="">Semua Site</option></select>
   <select class="filter" id="statusFilter">
@@ -238,46 +248,41 @@
   <button class="btn primary" id="addBtn">＋ Tambah Data</button>
 </div>
 
-<!-- ================= TABEL (SINGLE COLUMN) ================= -->
+<!-- ================= MAIN LIST: HANYA BUKTI TRANSAKSI KIRIM ================= -->
 <div class="table-card">
   <div class="table-wrap">
     <table>
       <thead>
-        <tr><th>Bukti Transaksi Kirim</th></tr>
+        <tr><th>Bukti Transaksi Kirim &nbsp;<span style="font-weight:400;text-transform:none;color:#94a3b8;font-size:10.5px">(klik untuk melihat detail)</span></th></tr>
       </thead>
       <tbody id="tbody"></tbody>
     </table>
   </div>
 </div>
 
-<!-- ================= MODAL DETAIL (HORIZONTAL) ================= -->
+<!-- ================= MODAL DETAIL (KARTU BERJAJAR KESAMPING) ================= -->
 <div class="overlay" id="detailOverlay">
-  <div class="modal detail">
+  <div class="modal wide">
     <div class="modal-head">
-      <div>
-        <h2 id="detailTitle">Detail Pengiriman</h2>
-        <div class="sub" id="detailSub">Semua kolom ditampilkan berjajar ke samping — geser horizontal untuk melihat seluruh data</div>
+      <div style="min-width:0">
+        <div class="detail-title-row">
+          <span class="key" id="detailKey">-</span>
+          <span class="count-pill" id="detailCount">0 item</span>
+        </div>
+        <div class="detail-hint">Semua data dengan Bukti Transaksi Kirim yang sama, ditampilkan berjajar ke samping →</div>
       </div>
       <button class="close-x" id="detailCloseX">✕</button>
     </div>
-    <div class="modal-body">
-      <div class="detail-head-info" id="detailHeadInfo"></div>
-      <div class="detail-scroll-hint">
-        <span>↔</span>
-        <span>Geser ke samping untuk melihat seluruh 21 kolom data</span>
-      </div>
-      <div class="detail-track" id="detailTrack"></div>
-    </div>
+    <div class="detail-cards" id="detailCards"></div>
     <div class="modal-foot">
-      <button class="btn danger" id="detailDeleteBtn">🗑 Hapus</button>
+      <div class="detail-summary" id="detailSummary">-</div>
       <div class="spacer"></div>
-      <button class="btn ghost" id="detailCloseBtn">Tutup</button>
-      <button class="btn primary" id="detailEditBtn">✏ Edit Data</button>
+      <button class="btn primary" id="detailAddBtn">＋ Tambah Item</button>
     </div>
   </div>
 </div>
 
-<!-- ================= MODAL FORM (ADD/EDIT) ================= -->
+<!-- ================= MODAL FORM (TAMBAH / EDIT) ================= -->
 <div class="overlay" id="overlay">
   <div class="modal">
     <div class="modal-head">
@@ -291,6 +296,7 @@
       <form id="dataForm" class="form-grid" onsubmit="return false"></form>
     </div>
     <div class="modal-foot">
+      <button class="btn danger" id="deleteBtn" style="display:none">🗑 Hapus</button>
       <div class="spacer"></div>
       <button class="btn ghost" id="cancelBtn">Batal</button>
       <button class="btn primary" id="saveBtn">💾 Simpan</button>
@@ -304,7 +310,7 @@
     <div class="modal-head">
       <div>
         <h2>📥 Upload Data dari Excel</h2>
-        <div class="sub">Format: .xlsx, .xls, .csv — baris pertama harus berisi nama kolom</div>
+        <div class="sub">Format: .xlsx, .xls, .csv — header baris pertama harus sesuai nama kolom</div>
       </div>
       <button class="close-x" id="importCloseX">✕</button>
     </div>
@@ -360,7 +366,7 @@
 
 <script>
 /* =========================================================
-   DEFINISI 21 KOLOM
+   DEFINISI 21 KOLOM / HEADER
    ========================================================= */
 const FIELDS = [
   { key:'nomor',                label:'Nomor',                   type:'text'   },
@@ -386,40 +392,49 @@ const FIELDS = [
   { key:'analisisSA',           label:'Analisis SA',             type:'textarea' }
 ];
 
-const STORAGE_KEY = 'kontrol_sparepart_v1';
+const NO_BUKTI_KEY = '(Tanpa Bukti Transaksi Kirim)';
+const STORAGE_KEY  = 'kontrol_sparepart_v1';
 
 /* =========================================================
-   DATA AWAL
+   SEED DATA
    ========================================================= */
 function seed(){
   return [
-    {
-      id:1, nomor:'1', site:'JKT-01', buktiTransaksiKirim:'TRX-2024-0011', tanggalReservasi:'2024-06-03',
+    { id:1, nomor:'1', site:'JKT-01', buktiTransaksiKirim:'KKG/KPG/SV/26/08/003', tanggalReservasi:'2024-06-03',
       buktiServiceCall:'SC-88213', buktiServiceJob:'SJ-4421', statusServiceCall:'Selesai',
       partNumber:'PN-AX4510', deskripsiPartNumber:'Fan Cooling Unit 24V', qty:'2',
       nomorSeriMaterial:'SN-778112', kembaliKePabrik:'Tidak', klaimKeHIT:'Ya',
       lokasiReservasi:'Gudang Jakarta', lokasiStok:'Rak A-12', lokasiTujuan:'Site JKT-01',
       buktiReservasi:'RSV-0091', nomorPO:'PO-4500123', invoiceKeHIT:'INV-HIT-0098',
-      buktiTerima:'BA-2201', analisisSA:'Kerusakan bearing, diganti unit baru'
-    },
-    {
-      id:2, nomor:'2', site:'SBY-02', buktiTransaksiKirim:'TRX-2024-0012', tanggalReservasi:'2024-06-07',
-      buktiServiceCall:'SC-88240', buktiServiceJob:'SJ-4430', statusServiceCall:'Proses',
-      partNumber:'PN-BX2201', deskripsiPartNumber:'Hydraulic Hose Assembly', qty:'5',
-      nomorSeriMaterial:'SN-990233', kembaliKePabrik:'Ya', klaimKeHIT:'Ya',
-      lokasiReservasi:'Gudang Surabaya', lokasiStok:'Rak C-04', lokasiTujuan:'Site SBY-02',
-      buktiReservasi:'RSV-0098', nomorPO:'PO-4500141', invoiceKeHIT:'-',
-      buktiTerima:'-', analisisSA:'Menunggu analisa dari pabrik'
-    },
-    {
-      id:3, nomor:'3', site:'MDN-03', buktiTransaksiKirim:'TRX-2024-0013', tanggalReservasi:'2024-06-11',
-      buktiServiceCall:'SC-88255', buktiServiceJob:'SJ-4455', statusServiceCall:'Open',
+      buktiTerima:'BA-2201', analisisSA:'Kerusakan bearing, diganti unit baru' },
+    { id:2, nomor:'2', site:'JKT-01', buktiTransaksiKirim:'KKG/KPG/SV/26/08/003', tanggalReservasi:'2024-06-03',
+      buktiServiceCall:'SC-88213', buktiServiceJob:'SJ-4421', statusServiceCall:'Selesai',
+      partNumber:'PN-BX2201', deskripsiPartNumber:'Hydraulic Hose Assembly', qty:'3',
+      nomorSeriMaterial:'SN-990233', kembaliKePabrik:'Tidak', klaimKeHIT:'Ya',
+      lokasiReservasi:'Gudang Jakarta', lokasiStok:'Rak C-04', lokasiTujuan:'Site JKT-01',
+      buktiReservasi:'RSV-0091', nomorPO:'PO-4500123', invoiceKeHIT:'INV-HIT-0098',
+      buktiTerima:'BA-2201', analisisSA:'Hose bocor, diganti baru' },
+    { id:3, nomor:'3', site:'JKT-01', buktiTransaksiKirim:'KKG/KPG/SV/26/08/003', tanggalReservasi:'2024-06-03',
+      buktiServiceCall:'SC-88213', buktiServiceJob:'SJ-4421', statusServiceCall:'Selesai',
       partNumber:'PN-CZ7788', deskripsiPartNumber:'Control Valve Solenoid', qty:'1',
-      nomorSeriMaterial:'SN-334901', kembaliKePabrik:'Tidak', klaimKeHIT:'Tidak',
-      lokasiReservasi:'Gudang Medan', lokasiStok:'Rak B-07', lokasiTujuan:'Site MDN-03',
+      nomorSeriMaterial:'SN-334901', kembaliKePabrik:'Ya', klaimKeHIT:'Ya',
+      lokasiReservasi:'Gudang Jakarta', lokasiStok:'Rak B-07', lokasiTujuan:'Site JKT-01',
+      buktiReservasi:'RSV-0091', nomorPO:'PO-4500123', invoiceKeHIT:'INV-HIT-0098',
+      buktiTerima:'BA-2201', analisisSA:'Solenoid mati total' },
+    { id:4, nomor:'4', site:'SBY-02', buktiTransaksiKirim:'TRX-2024-0012', tanggalReservasi:'2024-06-07',
+      buktiServiceCall:'SC-88240', buktiServiceJob:'SJ-4430', statusServiceCall:'Proses',
+      partNumber:'PN-DX1122', deskripsiPartNumber:'Drive Belt V-Type', qty:'4',
+      nomorSeriMaterial:'SN-551010', kembaliKePabrik:'Ya', klaimKeHIT:'Ya',
+      lokasiReservasi:'Gudang Surabaya', lokasiStok:'Rak D-01', lokasiTujuan:'Site SBY-02',
+      buktiReservasi:'RSV-0098', nomorPO:'PO-4500141', invoiceKeHIT:'-',
+      buktiTerima:'-', analisisSA:'Menunggu analisa dari pabrik' },
+    { id:5, nomor:'5', site:'MDN-03', buktiTransaksiKirim:'TRX-2024-0013', tanggalReservasi:'2024-06-11',
+      buktiServiceCall:'SC-88255', buktiServiceJob:'SJ-4455', statusServiceCall:'Open',
+      partNumber:'PN-EY3344', deskripsiPartNumber:'Sensor Tekanan Oli', qty:'2',
+      nomorSeriMaterial:'SN-221188', kembaliKePabrik:'Tidak', klaimKeHIT:'Tidak',
+      lokasiReservasi:'Gudang Medan', lokasiStok:'Rak B-09', lokasiTujuan:'Site MDN-03',
       buktiReservasi:'RSV-0102', nomorPO:'PO-4500155', invoiceKeHIT:'-',
-      buktiTerima:'-', analisisSA:'-'
-    }
+      buktiTerima:'-', analisisSA:'-' }
   ];
 }
 
@@ -428,11 +443,11 @@ function seed(){
    ========================================================= */
 let data = [];
 let editingId = null;
-let detailId = null;
+let currentDetailKey = null;
 let importRows = [];
 let importMapping = {};
 
-const $ = s => document.querySelector(s);
+const $   = s => document.querySelector(s);
 const esc = v => String(v ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
 function toast(msg){
@@ -457,59 +472,99 @@ function saveData(){
 }
 
 /* =========================================================
-   RENDER TABEL (HANYA 1 KOLOM: BUKTI TRANSAKSI KIRIM)
+   GROUPING: by Bukti Transaksi Kirim
    ========================================================= */
-function renderTable(){
+function groupKey(d){
+  const v = String(d.buktiTransaksiKirim || '').trim();
+  return v || NO_BUKTI_KEY;
+}
+
+function getFilteredData(){
   const q      = $('#searchInput').value.trim().toLowerCase();
   const site   = $('#siteFilter').value;
   const status = $('#statusFilter').value;
 
-  const rows = data.filter(d=>{
+  return data.filter(d=>{
     if(site   && (d.site || '') !== site) return false;
     if(status && (d.statusServiceCall || '') !== status) return false;
-    if(q) return FIELDS.some(f => String(d[f.key] ?? '').toLowerCase().includes(q));
+    if(q){
+      // cari di semua field
+      return FIELDS.some(f => String(d[f.key] ?? '').toLowerCase().includes(q));
+    }
     return true;
   });
+}
 
-  const tbody = $('#tbody');
+function getGroups(){
+  const filtered = getFilteredData();
+  const map = new Map();
+  filtered.forEach(d=>{
+    const k = groupKey(d);
+    if(!map.has(k)) map.set(k, []);
+    map.get(k).push(d);
+  });
+  return map;
+}
 
-  if(!rows.length){
+/* =========================================================
+   RENDER MAIN LIST (HANYA BUKTI TRANSAKSI KIRIM)
+   ========================================================= */
+function renderTable(){
+  const groups = getGroups();
+  const tbody  = $('#tbody');
+
+  if(groups.size === 0){
+    const anyData = data.length > 0;
     tbody.innerHTML = `<tr><td>
-      <div class="empty"><div class="big">📭</div>
-      <div>Belum ada data yang cocok.<br>Klik <b>＋ Tambah Data</b> atau <b>📥 Upload Excel</b> untuk mulai.</div></div>
+      <div class="empty"><div class="big">${anyData ? '🔎' : '📭'}</div>
+      <div>${anyData
+        ? 'Tidak ada data yang cocok dengan pencarian / filter.'
+        : 'Belum ada data. Klik <b>＋ Tambah Data</b> atau <b>📥 Upload Excel</b> untuk mulai.'}</div>
+      </div>
     </td></tr>`;
   }else{
-    tbody.innerHTML = rows.map(d=>{
-      const v = d.buktiTransaksiKirim ?? '';
-      const hasVal = v && String(v).trim() !== '';
-      return `<tr data-id="${d.id}" title="Klik untuk melihat detail lengkap">
+    const entries = [...groups.entries()].sort((a,b)=> a[0].localeCompare(b[0]));
+    tbody.innerHTML = entries.map(([key, items])=>{
+      const totalQty = items.reduce((a,d)=> a + (parseInt(d.qty)||0), 0);
+      const sites = [...new Set(items.map(d=>d.site).filter(Boolean))].join(', ') || '-';
+      const displayKey = key === NO_BUKTI_KEY ? key : key;
+      return `<tr data-key="${esc(key)}">
         <td>
           <div class="btk-row">
-            <span class="btk-icon">📄</span>
-            <span class="btk-val ${hasVal ? '' : 'btk-empty'}">${hasVal ? esc(v) : '(Belum ada bukti transaksi)'}</span>
-            <span class="btk-hint">Lihat Detail →</span>
+            <div class="btk-icon">📄</div>
+            <div>
+              <div class="btk-value">${esc(displayKey)}</div>
+              <div style="font-size:11px;color:#64748b;margin-top:2px">Site: ${esc(sites)}</div>
+            </div>
+            <div class="btk-badges">
+              <span class="btk-badge blue">${items.length} item</span>
+              <span class="btk-badge green">Qty: ${totalQty}</span>
+            </div>
+            <span class="btk-arrow">›</span>
           </div>
         </td>
       </tr>`;
     }).join('');
+
+    tbody.querySelectorAll('tr[data-key]').forEach(tr=>{
+      tr.addEventListener('click', ()=> openDetail(tr.dataset.key));
+    });
   }
 
-  tbody.querySelectorAll('tr[data-id]').forEach(tr=>{
-    tr.addEventListener('click', ()=> openDetail(Number(tr.dataset.id)));
-  });
-
-  updateStats(rows);
+  updateStats();
   refreshSiteFilter();
 }
 
 /* =========================================================
    STATISTIK
    ========================================================= */
-function updateStats(rows){
-  $('#stTotal').textContent = rows.length;
-  $('#stQty').textContent   = rows.reduce((a,d)=> a + (parseInt(d.qty)||0), 0);
-  $('#stOpen').textContent  = rows.filter(d=>['Open','Proses'].includes(d.statusServiceCall)).length;
-  $('#stPabrik').textContent= rows.filter(d=>d.kembaliKePabrik === 'Ya').length;
+function updateStats(){
+  const filtered = getFilteredData();
+  const groups   = getGroups();
+  $('#stTotal').textContent = groups.size;
+  $('#stQty').textContent   = filtered.reduce((a,d)=> a + (parseInt(d.qty)||0), 0);
+  $('#stOpen').textContent  = filtered.filter(d=>['Open','Proses'].includes(d.statusServiceCall)).length;
+  $('#stPabrik').textContent= filtered.filter(d=>d.kembaliKePabrik === 'Ya').length;
 }
 
 /* =========================================================
@@ -525,89 +580,99 @@ function refreshSiteFilter(){
 }
 
 /* =========================================================
-   DETAIL MODAL — SEMUA KOLOM BERJAJAR KE SAMPING
+   DETAIL MODAL — KARTU BERJAJAR KESAMPING
    ========================================================= */
-function openDetail(id){
-  detailId = id;
-  const d = data.find(x=>x.id === id);
-  if(!d) return;
-
-  // Head info ringkas
-  const btk = d.buktiTransaksiKirim || '(Belum ada bukti transaksi)';
-  const site = d.site || '-';
-  const status = d.statusServiceCall || '-';
-  const statusCls = String(status).toLowerCase();
-
-  $('#detailTitle').textContent = 'Detail Pengiriman';
-  $('#detailHeadInfo').innerHTML = `
-    <div>
-      <div class="dh-lbl">Bukti Transaksi Kirim</div>
-      <div class="dh-val">${esc(btk)}</div>
-    </div>
-    <div class="dh-sep"></div>
-    <div>
-      <div class="dh-lbl">Site</div>
-      <div class="dh-val">${esc(site)}</div>
-    </div>
-    <div class="dh-sep"></div>
-    <div>
-      <div class="dh-lbl">Status Service Call</div>
-      <div class="dh-val"><span class="pill ${statusCls}">${esc(status)}</span></div>
-    </div>
-    <div class="dh-sep"></div>
-    <div>
-      <div class="dh-lbl">Part Number</div>
-      <div class="dh-val">${esc(d.partNumber || '-')}</div>
-    </div>
-  `;
-
-  // Track horizontal berisi 21 kartu (berjajar ke samping)
-  const cards = FIELDS.map((f, i)=>{
-    const raw = d[f.key];
-    const val = (raw === undefined || raw === null || String(raw).trim() === '') ? '' : String(raw);
-    const isEmpty = val === '';
-    const num = String(i + 1).padStart(2, '0');
-
-    // Kartu lebar untuk field panjang
-    const isWide = ['deskripsiPartNumber','analisisSA','lokasiReservasi','lokasiStok','lokasiTujuan'].includes(f.key);
-    // Kartu aksen hijau untuk bukti transaksi kirim
-    const isAccent = f.key === 'buktiTransaksiKirim';
-
-    let inner;
-    if(f.key === 'statusServiceCall'){
-      const cls = String(val).toLowerCase();
-      inner = isEmpty
-        ? `<div class="d-val muted">-</div>`
-        : `<div><span class="pill ${cls}">${esc(val)}</span></div>`;
-    }else if(f.key === 'kembaliKePabrik' || f.key === 'klaimKeHIT'){
-      const cls = String(val).toLowerCase() === 'ya' ? 'ya' : 'tidak';
-      inner = isEmpty
-        ? `<div class="d-val muted">-</div>`
-        : `<div class="d-val"><span class="yn ${cls}">${esc(val)}</span></div>`;
-    }else{
-      inner = `<div class="d-val ${isEmpty ? 'muted' : ''}">${isEmpty ? '-' : esc(val)}</div>`;
-    }
-
-    return `<div class="d-card ${isWide ? 'wide' : ''} ${isAccent ? 'accent' : ''}">
-      <span class="d-num">${num}</span>
-      <div class="d-lbl">${esc(f.label)}</div>
-      ${inner}
-    </div>`;
-  }).join('');
-
-  $('#detailTrack').innerHTML = cards;
+function openDetail(key){
+  currentDetailKey = key;
+  renderDetail();
   $('#detailOverlay').classList.add('show');
-  // reset scroll ke kiri
-  setTimeout(()=>{ const t = $('#detailTrack'); if(t) t.scrollLeft = 0; }, 60);
 }
 
 function closeDetail(){
   $('#detailOverlay').classList.remove('show');
-  detailId = null;
+  currentDetailKey = null;
+}
+
+function renderDetail(){
+  if(!currentDetailKey) return;
+  const items = data.filter(d => groupKey(d) === currentDetailKey);
+
+  $('#detailKey').textContent = currentDetailKey;
+  $('#detailCount').textContent = items.length + ' item';
+
+  const totalQty = items.reduce((a,d)=> a + (parseInt(d.qty)||0), 0);
+
+  if(items.length === 0){
+    $('#detailCards').innerHTML = `<div style="padding:40px;color:#64748b;text-align:center;width:100%">
+      Tidak ada item pada bukti transaksi ini.</div>`;
+    $('#detailSummary').innerHTML = '-';
+    return;
+  }
+
+  $('#detailCards').innerHTML = items.map(d => renderDetailCard(d)).join('');
+
+  // Events: edit / delete per card
+  $('#detailCards').querySelectorAll('.edit-btn').forEach(b=>{
+    b.addEventListener('click', e=>{
+      e.stopPropagation();
+      const id = Number(b.dataset.id);
+      closeDetail();
+      openModal(id);
+    });
+  });
+  $('#detailCards').querySelectorAll('.del-btn').forEach(b=>{
+    b.addEventListener('click', e=>{
+      e.stopPropagation();
+      const id = Number(b.dataset.id);
+      const rec = data.find(x=>x.id===id);
+      if(!rec) return;
+      if(!confirm(`Hapus item "${rec.partNumber}" (#${rec.nomor})?`)) return;
+      data = data.filter(x=>x.id !== id);
+      saveData();
+      renderTable();
+      if(data.filter(d=>groupKey(d)===currentDetailKey).length === 0){
+        closeDetail();
+        toast('🗑 Item dihapus — grup kosong, kembali ke daftar');
+      }else{
+        renderDetail();
+        toast('🗑 Item dihapus');
+      }
+    });
+  });
+
+  $('#detailSummary').innerHTML =
+    `Total <b>${items.length}</b> item · <b>${totalQty}</b> qty`;
+}
+
+function renderDetailCard(d){
+  const status = String(d.statusServiceCall || '').toLowerCase();
+  const fieldsHtml = FIELDS
+    .filter(f => f.key !== 'nomor' && f.key !== 'statusServiceCall' && f.key !== 'buktiTransaksiKirim')
+    .map(f=>{
+      let v = d[f.key] ?? '';
+      if(v === '') v = '-';
+      const hi = (f.key === 'partNumber') ? ' hi' : '';
+      return `<div class="dc-field">
+        <div class="dc-label">${esc(f.label)}</div>
+        <div class="dc-value${hi}">${esc(v)}</div>
+      </div>`;
+    }).join('');
+
+  return `<div class="detail-card" data-id="${d.id}">
+    <div class="dc-head">
+      <span class="dc-nomor">#${esc(d.nomor || '-')}</span>
+      <span class="pill ${status}">${esc(d.statusServiceCall || '-')}</span>
+    </div>
+    <div class="dc-body">${fieldsHtml}</div>
+    <div class="dc-actions">
+      <button class="btn-icon edit-btn" data-id="${d.id}">✏ Edit</button>
+      <button class="btn-icon danger del-btn" data-id="${d.id}">🗑 Hapus</button>
+    </div>
+  </div>`;
 }
 
 /* =========================================================
-   FORM MODAL (TAMBAH / EDIT)
+   BUILD FORM (TAMBAH / EDIT)
    ========================================================= */
 function buildForm(){
   $('#dataForm').innerHTML = FIELDS.map(f=>{
@@ -627,17 +692,27 @@ function buildForm(){
   }).join('');
 }
 
-function openModal(id = null){
+/* =========================================================
+   MODAL CRUD
+   ========================================================= */
+function openModal(id = null, preset = null){
   editingId = id;
   const form = $('#dataForm');
   form.reset();
 
   if(id === null){
     $('#modalTitle').textContent = 'Tambah Data Pengiriman';
+    $('#deleteBtn').style.display = 'none';
+
     const maxNo = data.reduce((m,d)=> Math.max(m, parseInt(d.nomor)||0), 0);
     form.elements['nomor'].value = String(maxNo + 1);
+
+    if(preset && preset.buktiTransaksiKirim){
+      form.elements['buktiTransaksiKirim'].value = preset.buktiTransaksiKirim;
+    }
   }else{
     $('#modalTitle').textContent = 'Edit Data Pengiriman';
+    $('#deleteBtn').style.display = 'inline-flex';
     const d = data.find(x=>x.id === id);
     if(!d) return;
     FIELDS.forEach(f=>{
@@ -681,26 +756,16 @@ function saveRecord(){
   saveData();
   renderTable();
   closeModal();
-
-  // Kalau asalnya dari detail, refresh detail-nya
-  if(detailId !== null){
-    if(editingId !== null && data.some(x=>x.id === detailId)){
-      openDetail(detailId);
-    }else{
-      closeDetail();
-    }
-  }
 }
 
-function deleteFromDetail(){
-  if(detailId === null) return;
-  const d = data.find(x=>x.id === detailId);
-  if(!d) return;
+function deleteRecord(){
+  if(editingId === null) return;
+  const d = data.find(x=>x.id === editingId);
   if(!confirm(`Hapus data pengiriman "${d.partNumber}" (${d.site})?`)) return;
-  data = data.filter(x=>x.id !== detailId);
+  data = data.filter(x=>x.id !== editingId);
   saveData();
   renderTable();
-  closeDetail();
+  closeModal();
   toast('🗑 Data dihapus');
 }
 
@@ -708,22 +773,12 @@ function deleteFromDetail(){
    EXPORT CSV
    ========================================================= */
 function exportCSV(){
-  const q      = $('#searchInput').value.trim().toLowerCase();
-  const site   = $('#siteFilter').value;
-  const status = $('#statusFilter').value;
-
-  const rows = data.filter(d=>{
-    if(site   && (d.site||'') !== site) return false;
-    if(status && (d.statusServiceCall||'') !== status) return false;
-    if(q) return FIELDS.some(f => String(d[f.key] ?? '').toLowerCase().includes(q));
-    return true;
-  });
-
-  if(!rows.length){ toast('⚠️ Tidak ada data untuk diexport'); return; }
+  const filtered = getFilteredData();
+  if(!filtered.length){ toast('⚠️ Tidak ada data untuk diexport'); return; }
 
   const csvCell = v => `"${String(v ?? '').replace(/"/g,'""')}"`;
   const head = FIELDS.map(f=>csvCell(f.label)).join(';');
-  const body = rows.map(d => FIELDS.map(f=>csvCell(d[f.key])).join(';')).join('\r\n');
+  const body = filtered.map(d => FIELDS.map(f=>csvCell(d[f.key])).join(';')).join('\r\n');
 
   const blob = new Blob(['\uFEFF' + head + '\r\n' + body], {type:'text/csv;charset=utf-8;'});
   const url  = URL.createObjectURL(blob);
@@ -736,14 +791,14 @@ function exportCSV(){
 }
 
 /* =========================================================
-   TEMPLATE CSV
+   DOWNLOAD TEMPLATE CSV
    ========================================================= */
 function downloadTemplate(){
   const header = FIELDS.map(f=>`"${f.label}"`).join(';');
   const example = FIELDS.map(f=>{
     if(f.key === 'nomor') return '"1"';
     if(f.key === 'site') return '"JKT-01"';
-    if(f.key === 'buktiTransaksiKirim') return '"TRX-2024-0001"';
+    if(f.key === 'buktiTransaksiKirim') return '"KKG/KPG/SV/26/08/003"';
     if(f.key === 'statusServiceCall') return '"Open"';
     if(f.key === 'kembaliKePabrik' || f.key === 'klaimKeHIT') return '"Tidak"';
     if(f.key === 'qty') return '"1"';
@@ -760,19 +815,19 @@ function downloadTemplate(){
 }
 
 /* =========================================================
-   IMPORT EXCEL
+   IMPORT EXCEL — NORMALISASI HEADER
    ========================================================= */
 function norm(str){
   return String(str || '').toLowerCase().replace(/[^a-z0-9]/g, '');
 }
 
 const HEADER_ALIASES = {
-  nomor:               ['nomor','no','nomer','nomorurut','no.'],
+  nomor:               ['nomor','no','nomer','nomorurut','no.','no'],
   site:                ['site','sitelokasi','lokasisite','lokasi'],
-  buktiTransaksiKirim: ['buktitransaksikirim','buktikirim','buktitransaksi','transactionproof'],
+  buktiTransaksiKirim: ['buktitransaksikirim','buktikirim','buktitransaksi','transactionproof','nobuktikirim','nobukti'],
   tanggalReservasi:    ['tanggalreservasi','tglreservasi','tglresv','reservationdate'],
-  buktiServiceCall:    ['buktiservicecall','servicecall','sc'],
-  buktiServiceJob:     ['buktiservicejob','servicejob','sj'],
+  buktiServiceCall:    ['buktiservicecall','servicecall','sc','bukti_sc'],
+  buktiServiceJob:     ['buktiservicejob','servicejob','sj','bukti_sj'],
   statusServiceCall:   ['statusservicecall','statussc','status','statuscall'],
   partNumber:          ['partnumber','partno','partnum','pn','part_number','kodebarang','kode_part'],
   deskripsiPartNumber: ['deskripsipartnumber','deskripsi','description','namapart','namabarang','deskripsipart'],
@@ -799,20 +854,19 @@ function mapHeaders(headers){
     for(const f of FIELDS){
       if(used.has(f.key)) continue;
       const aliases = HEADER_ALIASES[f.key] || [];
-      if(aliases.some(a => norm(a) === n)){
-        map[f.key] = idx; used.add(f.key); return;
-      }
+      if(aliases.some(a => norm(a) === n)){ map[f.key] = idx; used.add(f.key); return; }
     }
     for(const f of FIELDS){
       if(used.has(f.key)) continue;
-      if(norm(f.label) === n){
-        map[f.key] = idx; used.add(f.key); return;
-      }
+      if(norm(f.label) === n){ map[f.key] = idx; used.add(f.key); return; }
     }
   });
   return map;
 }
 
+/* =========================================================
+   IMPORT MODAL LOGIC
+   ========================================================= */
 function openImportModal(){
   importRows = [];
   importMapping = {};
@@ -825,10 +879,12 @@ function openImportModal(){
   document.querySelector('input[name="importMode"][value="append"]').checked = true;
   $('#importOverlay').classList.add('show');
 }
-function closeImportModal(){ $('#importOverlay').classList.remove('show'); }
+function closeImportModal(){
+  $('#importOverlay').classList.remove('show');
+}
 
 function handleFile(file){
-  if(!file) return;
+  if(!file){ return; }
   const ext = file.name.split('.').pop().toLowerCase();
   if(!['xlsx','xls','csv'].includes(ext)){
     showAlert('Format file tidak didukung. Gunakan .xlsx, .xls, atau .csv', 'err');
@@ -874,22 +930,21 @@ function handleFile(file){
       renderImportPreview(headers);
       renderMappingStatus();
 
+      const hasBTK  = importMapping.buktiTransaksiKirim !== undefined;
       const hasSite = importMapping.site !== undefined;
       const hasPart = importMapping.partNumber !== undefined;
 
-      if(!hasSite && !hasPart){
-        showAlert('Kolom "Site" dan "Part Number" tidak ditemukan pada header Excel.', 'err');
+      if(!hasBTK){
+        showAlert('Kolom "Bukti Transaksi Kirim" tidak ditemukan. Semua baris akan masuk ke grup "(Tanpa Bukti Transaksi Kirim)".', 'warn');
+        $('#importConfirmBtn').disabled = false;
+      }else if(!hasSite && !hasPart){
+        showAlert('Kolom "Site" dan "Part Number" tidak ditemukan. Periksa nama kolom pada file Excel.', 'err');
         $('#importConfirmBtn').disabled = true;
-      }else if(!hasSite){
-        showAlert('Kolom "Site" tidak ditemukan. Data tetap dapat diimport (kolom Site kosong).', 'warn');
-        $('#importConfirmBtn').disabled = false;
-      }else if(!hasPart){
-        showAlert('Kolom "Part Number" tidak ditemukan. Data tetap dapat diimport (kolom Part Number kosong).', 'warn');
-        $('#importConfirmBtn').disabled = false;
       }else{
-        showAlert('✓ File berhasil dibaca. Periksa preview lalu klik "Import Sekarang".', 'info');
+        showAlert('✓ File berhasil dibaca. Periksa preview di bawah lalu klik "Import Sekarang".', 'info');
         $('#importConfirmBtn').disabled = false;
       }
+
     }catch(err){
       console.error(err);
       showAlert('Gagal membaca file: ' + err.message, 'err');
@@ -906,7 +961,7 @@ function showAlert(msg, type){
 }
 
 function renderImportPreview(headers){
-  const previewKeys = ['nomor','site','partNumber','deskripsiPartNumber','qty','statusServiceCall'];
+  const previewKeys = ['nomor','buktiTransaksiKirim','site','partNumber','deskripsiPartNumber','qty','statusServiceCall'];
   const cols = previewKeys.filter(k => importMapping[k] !== undefined);
   const useCols = cols.length ? cols : FIELDS.slice(0,6).map(f=>f.key);
 
@@ -946,9 +1001,10 @@ function renderMappingStatus(){
 }
 
 function confirmImport(){
-  if(!importRows.length) return;
+  if(!importRows.length){ return; }
   const mode = document.querySelector('input[name="importMode"]:checked').value;
   const baseId = data.length ? Math.max(...data.map(d=>d.id)) : 0;
+
   const newRecords = importRows.map((r, i)=>({ ...r, id: baseId + i + 1 }));
 
   if(mode === 'replace'){
@@ -966,7 +1022,7 @@ function confirmImport(){
 }
 
 /* =========================================================
-   INIT
+   INISIALISASI
    ========================================================= */
 function init(){
   $('#today').textContent = new Date().toLocaleDateString('id-ID',
@@ -976,32 +1032,33 @@ function init(){
   buildForm();
   renderTable();
 
-  // Toolbar
+  // Filter & pencarian
   $('#searchInput').addEventListener('input', renderTable);
   $('#siteFilter').addEventListener('change', renderTable);
   $('#statusFilter').addEventListener('change', renderTable);
-  $('#addBtn').addEventListener('click', ()=> openModal(null));
-  $('#exportBtn').addEventListener('click', exportCSV);
-  $('#templateBtn').addEventListener('click', downloadTemplate);
 
-  // Form modal
+  // CRUD
+  $('#addBtn').addEventListener('click', ()=> openModal(null));
   $('#closeX').addEventListener('click', closeModal);
   $('#cancelBtn').addEventListener('click', closeModal);
   $('#saveBtn').addEventListener('click', saveRecord);
+  $('#deleteBtn').addEventListener('click', deleteRecord);
   $('#overlay').addEventListener('click', e=>{ if(e.target.id === 'overlay') closeModal(); });
 
   // Detail modal
   $('#detailCloseX').addEventListener('click', closeDetail);
-  $('#detailCloseBtn').addEventListener('click', closeDetail);
   $('#detailOverlay').addEventListener('click', e=>{ if(e.target.id === 'detailOverlay') closeDetail(); });
-  $('#detailEditBtn').addEventListener('click', ()=>{
-    const id = detailId;
+  $('#detailAddBtn').addEventListener('click', ()=>{
+    const presetKey = currentDetailKey === NO_BUKTI_KEY ? '' : currentDetailKey;
     closeDetail();
-    if(id !== null) openModal(id);
+    openModal(null, { buktiTransaksiKirim: presetKey });
   });
-  $('#detailDeleteBtn').addEventListener('click', deleteFromDetail);
 
-  // Import modal
+  // Export & template
+  $('#exportBtn').addEventListener('click', exportCSV);
+  $('#templateBtn').addEventListener('click', downloadTemplate);
+
+  // Import Excel
   $('#importBtn').addEventListener('click', openImportModal);
   $('#importCloseX').addEventListener('click', closeImportModal);
   $('#importCancelBtn').addEventListener('click', closeImportModal);
@@ -1023,7 +1080,9 @@ function init(){
     if(f) handleFile(f);
   });
   $('#fcRemove').addEventListener('click', ()=>{
-    importRows = []; importMapping = {}; fi.value = '';
+    importRows = [];
+    importMapping = {};
+    fi.value = '';
     $('#fileChip').classList.remove('show');
     $('#previewBox').classList.remove('show');
     $('#mappingWrap').style.display = 'none';
